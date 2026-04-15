@@ -20,6 +20,12 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+.navbar-scrolled .navbar-logo,
+.navbar-scrolled .nav-link,
+.navbar-scrolled .mobile-toggle {
+  color: var(--color-text-primary);
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -31,7 +37,7 @@
   font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: white;
   letter-spacing: -0.5px;
 }
 
@@ -49,7 +55,7 @@
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 0.95rem;
-  color: var(--color-text-primary);
+  color: white;
   position: relative;
   transition: color var(--transition-fast);
 }
@@ -75,7 +81,7 @@
 }
 
 .mobile-toggle {
-  color: var(--color-text-primary);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;

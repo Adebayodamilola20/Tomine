@@ -34,7 +34,7 @@ const Contact = () => {
             <h4 className="section-subtitle">Reach Us</h4>
             <h2 className="section-title">Contact Information</h2>
             <p className="text-secondary mb-8 text-lg">
-              Our dedicated team is here to ensure your experience with Lumina is flawless from start to finish. Feel free to contact us via phone, email, or visit us in person.
+              Our dedicated team is here to ensure your experience with Tomine is flawless from start to finish. Feel free to contact us via phone, email, or visit us in person.
             </p>
             
             <div className="contact-info-list flex-col gap-lg">
@@ -42,21 +42,21 @@ const Contact = () => {
                 <div className="icon-circle border-primary text-primary"><MapPin size={24} /></div>
                 <div>
                   <h4 className="font-heading font-semibold text-xl">Address</h4>
-                  <p className="text-secondary">123 Culinary Ave, New York, NY 10012</p>
+                  <p className="text-secondary">Lagos</p>
                 </div>
               </div>
               <div className="contact-info-item flex gap-md items-center mt-6">
                 <div className="icon-circle border-primary text-primary"><Phone size={24} /></div>
                 <div>
                   <h4 className="font-heading font-semibold text-xl">Phone</h4>
-                  <p className="text-secondary">+1 (555) 123-4567</p>
+                  <p className="text-secondary">09036152411</p>
                 </div>
               </div>
               <div className="contact-info-item flex gap-md items-center mt-6">
                 <div className="icon-circle border-primary text-primary"><Mail size={24} /></div>
                 <div>
                   <h4 className="font-heading font-semibold text-xl">Email</h4>
-                  <p className="text-secondary">hello@luminarestaurant.com</p>
+                  <p className="text-secondary">hello@tominarestaurant.com</p>
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@ const Contact = () => {
                 </div>
                 <div className="relative z-10 flex-col items-center justify-center text-center">
                   <MapPin size={40} className="text-primary mb-2 mx-auto" />
-                  <span className="font-heading font-bold text-lg">LUMINA LOCATION</span>
+                  <span className="font-heading font-bold text-lg">TOMINE LOCATION</span>
                 </div>
               </div>
             </div>

@@ -53,7 +53,7 @@ const Navbar = () => {
             ))}
           </nav>
 
-          <div className="navbar-actions desktop-only">
+          <div className="navbar-actions desktop-only flex items-center gap-4">
             <Link to="/order">
               <Button variant="primary">Book Table</Button>
             </Link>
@@ -89,7 +89,7 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <div className="mobile-menu-actions">
+              <div className="mobile-menu-actions flex flex-col gap-4 mt-6">
                 <Link to="/order" className="w-full">
                   <Button variant="primary" fullWidth>Book Table</Button>
                 </Link>

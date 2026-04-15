@@ -3,6 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import DishCard, { type DishCardProps } from '../components/ui/DishCard';
 import './Menu.css';
 
+import path1 from '../assets/path1.jpg';
+import path2 from '../assets/path2.jpg';
+import path3 from '../assets/path3.jpg';
+import path4 from '../assets/path4.jpg';
+import path5 from '../assets/path5.jpg';
+import path6 from '../assets/path6.jpg';
+
 interface MenuItem extends DishCardProps {
   category: string;
 }
@@ -11,23 +18,23 @@ const MENU_CATEGORIES = ['All', 'Starters', 'Main Dishes', 'Desserts', 'Drinks']
 
 const MENU_DATA: MenuItem[] = [
   // Starters
-  { id: 'm1', category: 'Starters', image: 'https://images.unsplash.com/photo-1626804475297-41609ea264eb?q=80&w=800&auto=format&fit=crop', name: 'Bruschetta al Pomodoro', description: 'Grilled bread rubbed with garlic and topped with olive oil, salt, and fresh tomatoes.', price: '$12' },
-  { id: 'm2', category: 'Starters', image: 'https://images.unsplash.com/photo-1548943487-a2e4f43b485d?q=80&w=800&auto=format&fit=crop', name: 'Crispy Calamari', description: 'Lightly breaded calamari rings served with a spicy marinara dipping sauce.', price: '$16' },
-  { id: 'm3', category: 'Starters', image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=800&auto=format&fit=crop', name: 'Caprese Salad', description: 'Fresh mozzarella, tomatoes, and sweet basil, seasoned with salt and olive oil.', price: '$14' },
+  { id: 'm1', category: 'Starters', image: path1, name: 'Bruschetta al Pomodoro', description: 'Grilled bread rubbed with garlic and topped with olive oil, salt, and fresh tomatoes.', price: '₦ 8,500' },
+  { id: 'm2', category: 'Starters', image: path2, name: 'Crispy Calamari', description: 'Lightly breaded calamari rings served with a spicy marinara dipping sauce.', price: '₦ 12,000' },
+  { id: 'm3', category: 'Starters', image: path3, name: 'Caprese Salad', description: 'Fresh mozzarella, tomatoes, and sweet basil, seasoned with salt and olive oil.', price: '₦ 9,500' },
   
   // Main Dishes
-  { id: 'm4', category: 'Main Dishes', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop', name: 'Grilled Salmon Puree', description: 'Fresh Atlantic salmon perfectly grilled with a side of asparagus and lemon butter.', price: '$32' },
-  { id: 'm5', category: 'Main Dishes', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop', name: 'Wagyu Beef Steak', description: 'Premium A5 grade beef served with roasted rustic potatoes and red wine reduction.', price: '$85' },
-  { id: 'm6', category: 'Main Dishes', image: 'https://images.unsplash.com/photo-1551183053-bf91a1d92305?q=80&w=800&auto=format&fit=crop', name: 'Truffle Mushroom Risotto', description: 'Creamy Arborio rice slow-cooked with white wine, parmesan cheese, and truffle.', price: '$28' },
-  { id: 'm7', category: 'Main Dishes', image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=800&auto=format&fit=crop', name: 'Lobster Ravioli', description: 'Handmade ravioli stuffed with lobster and ricotta in a creamy vodka pink sauce.', price: '$36' },
+  { id: 'm4', category: 'Main Dishes', image: path4, name: 'Grilled Salmon Puree', description: 'Fresh Atlantic salmon perfectly grilled with a side of asparagus and lemon butter.', price: '₦ 24,000' },
+  { id: 'm5', category: 'Main Dishes', image: path5, name: 'Wagyu Beef Steak', description: 'Premium A5 grade beef served with roasted rustic potatoes and red wine reduction.', price: '₦ 55,000' },
+  { id: 'm6', category: 'Main Dishes', image: path6, name: 'Truffle Mushroom Risotto', description: 'Creamy Arborio rice slow-cooked with white wine, parmesan cheese, and truffle.', price: '₦ 21,000' },
+  { id: 'm7', category: 'Main Dishes', image: path1, name: 'Lobster Ravioli', description: 'Handmade ravioli stuffed with lobster and ricotta in a creamy vodka pink sauce.', price: '₦ 28,000' },
 
   // Desserts
-  { id: 'm8', category: 'Desserts', image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?q=80&w=800&auto=format&fit=crop', name: 'Classic Tiramisu', description: 'Coffee-flavoured Italian dessert dusted with cocoa powder.', price: '$12' },
-  { id: 'm9', category: 'Desserts', image: 'https://images.unsplash.com/photo-1605153864431-a2795a1b2f95?q=80&w=800&auto=format&fit=crop', name: 'Molten Lava Cake', description: 'Warm chocolate cake with a gooey center, served with vanilla bean ice cream.', price: '$14' },
+  { id: 'm8', category: 'Desserts', image: path2, name: 'Classic Tiramisu', description: 'Coffee-flavoured Italian dessert dusted with cocoa powder.', price: '₦ 8,500' },
+  { id: 'm9', category: 'Desserts', image: path3, name: 'Molten Lava Cake', description: 'Warm chocolate cake with a gooey center, served with vanilla bean ice cream.', price: '₦ 10,000' },
   
   // Drinks
-  { id: 'm10', category: 'Drinks', image: 'https://images.unsplash.com/photo-1536935338773-84f923e107df?q=80&w=800&auto=format&fit=crop', name: 'Signature Negroni', description: 'Gin, vermouth rosso, and Campari, garnished with orange peel.', price: '$16' },
-  { id: 'm11', category: 'Drinks', image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&auto=format&fit=crop', name: 'Citrus Sparkler', description: 'Refreshing mocktail with fresh lemon, lime, mint, and sparkling water.', price: '$8' },
+  { id: 'm10', category: 'Drinks', image: path4, name: 'Signature Negroni', description: 'Gin, vermouth rosso, and Campari, garnished with orange peel.', price: '₦ 12,000' },
+  { id: 'm11', category: 'Drinks', image: path5, name: 'Citrus Sparkler', description: 'Refreshing mocktail with fresh lemon, lime, mint, and sparkling water.', price: '₦ 6,000' },
 ];
 
 const Menu = () => {

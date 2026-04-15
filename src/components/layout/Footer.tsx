@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-4 gap-xl footer-grid">
           {/* Brand */}
           <div className="footer-col brand-col">
-            <Link to="/" className="footer-logo">Lumina<span>.</span></Link>
+            <Link to="/" className="footer-logo">Tomine<span>.</span></Link>
             <p className="text-secondary mt-4">Experience taste like never before. A harmonious blend of tradition and modern culinary artistry.</p>
             <div className="social-links mt-6">
               <a href="#" className="social-icon"><Camera size={20} /></a>
@@ -34,9 +34,9 @@ const Footer = () => {
           <div className="footer-col contact-col">
             <h4 className="footer-heading">Contact Us</h4>
             <ul className="footer-contact">
-              <li className="flex items-center gap-sm"><MapPin size={18} className="text-primary" /> <span>123 Culinary Ave, NY 10012</span></li>
-              <li className="flex items-center gap-sm"><Phone size={18} className="text-primary" /> <span>+1 (555) 123-4567</span></li>
-              <li className="flex items-center gap-sm"><Mail size={18} className="text-primary" /> <span>hello@luminarestaurant.com</span></li>
+              <li className="flex items-center gap-sm"><MapPin size={18} className="text-primary" /> <span>Lagos</span></li>
+              <li className="flex items-center gap-sm"><Phone size={18} className="text-primary" /> <span>09036152411</span></li>
+              <li className="flex items-center gap-sm"><Mail size={18} className="text-primary" /> <span>hello@tominarestaurant.com</span></li>
             </ul>
           </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom flex justify-between items-center">
-          <p className="text-secondary text-sm">&copy; {new Date().getFullYear()} Lumina Restaurant. All rights reserved.</p>
+          <p className="text-secondary text-sm">&copy; {new Date().getFullYear()} Tomine Restaurant. All rights reserved.</p>
           <div className="footer-bottom-links">
             <Link to="#">Privacy Policy</Link>
             <Link to="#">Terms of Service</Link>

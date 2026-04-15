@@ -3,7 +3,7 @@ import { Target, Heart, Award } from 'lucide-react';
 import './About.css';
 
 const TIMELINE = [
-  { year: '2010', title: 'The Beginning', desc: 'Lumina opened its doors with a simple vision to provide comfort food elevated by modern techniques.' },
+  { year: '2010', title: 'The Beginning', desc: 'Tomine opened its doors with a simple vision to provide comfort food elevated by modern techniques.' },
   { year: '2015', title: 'First Michelin Star', desc: 'Our dedication to excellence was recognized globally, setting a new standard for our culinary journey.' },
   { year: '2020', title: 'Sustainable Shift', desc: 'Partnered with over 50 local farms to ensure 100% organic and sustainable sourcing.' },
   { year: '2023', title: 'Global Recognition', desc: 'Named among the Top 50 Restaurants worldwide, expanding our influence and team.' },
@@ -12,7 +12,7 @@ const TIMELINE = [
 const TEAM = [
   { name: 'Alexandar Vanes', role: 'Executive Chef', image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=800&auto=format&fit=crop' },
   { name: 'Maria Gonzalez', role: 'Head Pastry Chef', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=800&auto=format&fit=crop' },
-  { name: 'James Wright', role: 'Chief Sommelier', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop' },
+  { name: 'James Wright', role: 'Meat Chef', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop' },
 ];
 
 const About = () => {
@@ -44,9 +44,9 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <h4 className="section-subtitle">Since 2010</h4>
-            <h2 className="section-title">The Lumina Heritage</h2>
+            <h2 className="section-title">The Tomine Heritage</h2>
             <p className="text-secondary mb-4 text-lg">
-              What started as a humble bistro in the heart of the city has blossomed into a temple of gastronomy. Lumina is the realization of a lifelong dream to bring people together through the universal language of extraordinary food.
+              What started as a humble bistro in the heart of the city has blossomed into a temple of gastronomy. Tomine is the realization of a lifelong dream to bring people together through the universal language of extraordinary food.
             </p>
             <p className="text-secondary">
               Every dish we serve tells a story—our story. From the crackling warmth of our ovens to the meticulous plating of our desserts, we pour our hearts into every detail.
@@ -122,7 +122,7 @@ const About = () => {
             <h4 className="section-subtitle">Meet the Mastermind</h4>
             <h2 className="section-title">Chef Alexandar Vanes</h2>
             <p className="text-secondary mb-6 text-lg">
-              "Cooking is not just about combining ingredients; it's an expression of soul, culture, and love. At Lumina, we paint our emotions on the plate."
+              "Cooking is not just about combining ingredients; it's an expression of soul, culture, and love. At Tomine, we paint our emotions on the plate."
             </p>
             <p className="text-secondary mb-4">
               With over two decades of international experience across Paris, Tokyo, and New York, Chef Vanes brings a truly global perspective to the table. His philosophy revolves around respecting the ingredient and enhancing its natural flavors rather than masking them.
@@ -137,7 +137,7 @@ const About = () => {
         <div className="container">
           <div className="text-center mb-12">
             <h4 className="section-subtitle">Our Journey</h4>
-            <h2 className="section-title">The Evolution of Lumina</h2>
+            <h2 className="section-title">The Evolution of Tomine</h2>
           </div>
           <div className="timeline-container">
             {TIMELINE.map((item, idx) => (

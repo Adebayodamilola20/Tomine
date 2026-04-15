@@ -6,45 +6,44 @@ import Button from '../components/ui/Button';
 import DishCard from '../components/ui/DishCard';
 import './Home.css';
 
-import img1 from '../assets/IMG_7445.jpg';
-import img2 from '../assets/IMG_7446.jpg';
-import img3 from '../assets/IMG_7447.jpg';
-import img4 from '../assets/IMG_7448.jpg';
-import img5 from '../assets/IMG_7449.jpg';
-import img6 from '../assets/IMG_7450.jpg';
+import img1 from '../assets/cto1.jpg';
+import img2 from '../assets/cto2.jpg';
+import img3 from '../assets/cto3.jpg';
+import img4 from '../assets/cto4.jpg';
+import img5 from '../assets/cto5.jpg';
+import img6 from '../assets/ct.jpg';
+
+import path1 from '../assets/path1.jpg';
+import path2 from '../assets/path2.jpg';
+import path3 from '../assets/path3.jpg';
 
 const HERO_IMAGES = [img1, img2, img3, img4, img5, img6];
 
 const MOCK_DISHES = [
   {
     id: '1',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1000&auto=format&fit=crop',
+    image: path1,
     name: 'Grilled Salmon Puree',
     description: 'Fresh Atlantic salmon perfectly grilled with a side of asparagus and lemon butter sauce.',
-    price: '$32'
+    price: '₦ 24,000'
   },
   {
     id: '2',
-    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d92305?q=80&w=1000&auto=format&fit=crop',
+    image: path2,
     name: 'Truffle Mushroom Risotto',
     description: 'Creamy Arborio rice slow-cooked with white wine, parmesan cheese, and black truffle shavings.',
-    price: '$28'
+    price: '₦ 21,000'
   },
   {
     id: '3',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop',
+    image: path3,
     name: 'Wagyu Beef Steak',
     description: 'Premium A5 grade beef served with roasted rustic potatoes and red wine reduction.',
-    price: '$85'
+    price: '₦ 55,000'
   }
 ];
 
-const MOCK_GALLERY = [
-  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop'
-];
+const MOCK_GALLERY = [img1, img2, img3, img4];
 
 // Testimonials removed to fix unused variable warning
 
@@ -57,6 +56,7 @@ const Home = () => {
     }, 5000); // Change image every 5 seconds
     return () => clearInterval(interval);
   }, []);
+
   return (
     <div className="home-page">
       {/* 1. Hero Section */}
@@ -82,9 +82,9 @@ const Home = () => {
         <div className="container hero-container">
           <motion.div 
             className="hero-content"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
           >
             <span className="hero-subtitle">Meticulously Crafted</span>
             <h1 className="hero-title">Experience Taste Like Never Before.</h1>
@@ -132,7 +132,7 @@ const Home = () => {
               <h4 className="section-subtitle">Our Story</h4>
               <h2 className="section-title">A Symphony of Fresh Ingredients and Passion</h2>
               <p className="text-secondary mt-4 mb-4">
-                Since our founding, Lumina has been dedicated to reimagining the culinary landscape. We believe that a meal is more than just food—it's an experience that brings people together, evoking passion and memories.
+                Since our founding, Tomine has been dedicated to reimagining the culinary landscape. We believe that a meal is more than just food—it's an experience that brings people together, evoking passion and memories.
               </p>
               <p className="text-secondary mb-4">
                 Our world-renowned chefs meticulously source seasonal, local ingredients to craft dishes that look as beautiful as they taste.
@@ -176,7 +176,7 @@ const Home = () => {
       <section className="section why-us">
         <div className="container">
           <div className="text-center mb-10">
-            <h4 className="section-subtitle">The Lumina Difference</h4>
+            <h4 className="section-subtitle">The Tomine Difference</h4>
             <h2 className="section-title">Why Dine With Us?</h2>
           </div>
           <div className="grid grid-cols-3 gap-xl">
@@ -218,28 +218,26 @@ const Home = () => {
       </section>
 
       {/* 5. Gallery Preview */}
-      <section className="section gallery-preview-section">
+      <section className="section gallery-preview-section overflow-hidden">
         <div className="container">
           <div className="text-center mb-10">
             <h4 className="section-subtitle">Visual Feast</h4>
             <h2 className="section-title">Our Ambience & Creations</h2>
           </div>
-          <div className="gallery-masonry">
-            {MOCK_GALLERY.map((img, idx) => (
-              <motion.div 
-                key={idx} 
-                className={`gallery-item item-${idx}`}
-                whileHover={{ scale: 0.98 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
+        </div>
+        
+        <div className="gallery-marquee">
+          <div className="gallery-track">
+            {[...MOCK_GALLERY, ...MOCK_GALLERY, ...MOCK_GALLERY, ...MOCK_GALLERY].map((img, idx) => (
+              <div key={idx} className="gallery-slide">
                 <img src={img} alt="Restaurant gallery item" loading="lazy" />
-              </motion.div>
+              </div>
             ))}
           </div>
-          <div className="text-center mt-10">
+        </div>
+        
+        <div className="container">
+          <div className="text-center gallery-action-btn">
             <Link to="/gallery">
               <Button variant="outline">View Full Gallery</Button>
             </Link>
@@ -249,9 +247,20 @@ const Home = () => {
 
       {/* 6. Call To Action */}
       <section className="cta-section">
-        <div className="container">
+        <div className="cta-video-container">
+          <video 
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="cta-video" 
+          />
+        </div>
+        <div className="cta-overlay"></div>
+        <div className="container relative z-10">
           <div className="cta-box glass-panel text-center">
-            <h2>Ready to Experience Lumina?</h2>
+            <h2>Ready to Experience Tomine?</h2>
             <p className="text-secondary mt-4 mb-6">Reserve your table today for an unforgettable culinary journey.</p>
             <Link to="/order">
               <Button variant="primary" size="lg">Book Your Table Now</Button>

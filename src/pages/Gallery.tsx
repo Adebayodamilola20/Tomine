@@ -30,7 +30,7 @@ const Gallery = () => {
         >
           <h1 className="text-white text-5xl md:text-6xl font-bold mb-4">Visual Feast</h1>
           <p className="text-white text-xl opacity-90 max-w-2xl mx-auto">
-            Glimpses into the beautiful spaces and intricately crafted dishes at Lumina.
+            Glimpses into the beautiful spaces and intricately crafted dishes at Tomine.
           </p>
         </motion.div>
       </section>
