@@ -54,9 +54,9 @@ const Navbar = () => {
           </nav>
 
           <div className="navbar-actions desktop-only flex items-center gap-4">
-            <Link to="/order">
-              <Button variant="primary">Book Table</Button>
-            </Link>
+            <a href="https://wa.me/2348023099837" target="_blank" rel="noopener noreferrer">
+              <Button variant="primary">Order Now</Button>
+            </a>
           </div>
 
           {/* Mobile Toggle */}
@@ -90,9 +90,9 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="mobile-menu-actions flex flex-col gap-4 mt-6">
-                <Link to="/order" className="w-full">
-                  <Button variant="primary" fullWidth>Book Table</Button>
-                </Link>
+                <a href="https://wa.me/2348023099837" target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Button variant="primary" fullWidth>Order Now</Button>
+                </a>
               </div>
             </div>
           </motion.div>

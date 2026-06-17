@@ -11,7 +11,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  margin-top: 80px; /* Offset for navbar */
+  padding-top: 80px;
 }
 
 .menu-hero-overlay {
