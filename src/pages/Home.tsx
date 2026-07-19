@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Leaf, Award, Clock, ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
-import DishCard from '../components/ui/DishCard';
 import './Home.css';
 
 import img1 from '../assets/cto1.jpg';
@@ -16,6 +15,8 @@ import img6 from '../assets/ct.jpg';
 import path1 from '../assets/path1.jpg';
 import path2 from '../assets/path2.jpg';
 import path3 from '../assets/path3.jpg';
+import path4 from '../assets/path4.jpg';
+import path5 from '../assets/path5.jpg';
 
 const HERO_IMAGES = [img1, img2, img3, img4, img5, img6];
 
@@ -40,10 +41,29 @@ const MOCK_DISHES = [
     name: 'Wagyu Beef Steak',
     description: 'Premium A5 grade beef served with roasted rustic potatoes and red wine reduction.',
     price: '₦ 55,000'
+  },
+  {
+    id: '4',
+    image: path4,
+    name: 'Lobster Ravioli',
+    description: 'Handmade ravioli stuffed with lobster and ricotta in a creamy vodka pink sauce.',
+    price: '₦ 28,000'
+  },
+  {
+    id: '5',
+    image: path5,
+    name: 'Signature Negroni',
+    description: 'Gin, vermouth rosso, and Campari, garnished with orange peel.',
+    price: '₦ 12,000'
   }
 ];
 
-const MOCK_GALLERY = [img1, img2, img3, img4];
+const GALLERY_SHOTS = [
+  { image: img1, label: 'The dining room' },
+  { image: img2, label: 'Private seating' },
+  { image: img3, label: 'The bar' },
+  { image: img4, label: 'Signature plates' }
+];
 
 // Testimonials removed to fix unused variable warning
 
@@ -61,41 +81,54 @@ const Home = () => {
     <div className="home-page">
       {/* 1. Hero Section */}
       <section className="hero-section">
-        <div className="hero-background">
-          <AnimatePresence>
-            <motion.img 
-              key={currentImageIndex}
-              src={HERO_IMAGES[currentImageIndex]}
-              alt="Restaurant Interior"
-              className="hero-image"
-              initial={{ opacity: 0, scale: 1 }}
-              animate={{ opacity: 1, scale: 1.1 }}
-              exit={{ opacity: 0 }}
-              transition={{ 
-                opacity: { duration: 1.5, ease: "easeInOut" },
-                scale: { duration: 6, ease: "linear" } 
-              }}
-            />
-          </AnimatePresence>
-          <div className="hero-overlay"></div>
-        </div>
         <div className="container hero-container">
-          <motion.div 
+          <motion.div
             className="hero-content"
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           >
-            <span className="hero-subtitle">Meticulously Crafted</span>
-            <h1 className="hero-title">Experience Taste Like Never Before.</h1>
+            <span className="hero-badge">Lagos, Nigeria &middot; Open 7 Days a Week</span>
+            <h1 className="hero-title">Experience taste like <span className="highlight-mark">never before.</span></h1>
             <p className="hero-desc">Discover a harmonious blend of traditional flavors and modern culinary artistry in the heart of the city.</p>
-            <div className="hero-actions flex gap-md">
-              <Link to="/menu">
-                <Button variant="primary" size="lg">Explore Menu</Button>
-              </Link>
+            <div className="hero-actions flex gap-md items-center">
               <Link to="/order">
-                <Button variant="outline" size="lg" className="hero-btn-outline">Book a Table</Button>
+                <Button variant="primary" size="lg" className="icon-btn">Book a Table <ArrowRight size={18} /></Button>
               </Link>
+              <Link to="/menu">
+                <Button variant="ghost" size="lg">See the Menu</Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="hero-visual"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          >
+            <img
+              src={HERO_IMAGES[(currentImageIndex + 1) % HERO_IMAGES.length]}
+              alt=""
+              aria-hidden="true"
+              className="hero-photo-behind"
+            />
+            <div className="hero-photo-card">
+              <AnimatePresence>
+                <motion.img
+                  key={currentImageIndex}
+                  src={HERO_IMAGES[currentImageIndex]}
+                  alt="Restaurant Interior"
+                  className="hero-image"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, scale: 1.05 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    opacity: { duration: 1.5, ease: "easeInOut" },
+                    scale: { duration: 6, ease: "linear" }
+                  }}
+                />
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
@@ -159,9 +192,23 @@ const Home = () => {
               View Full Menu <ArrowRight size={18} />
             </Link>
           </div>
-          <div className="grid grid-cols-3 gap-lg">
-            {MOCK_DISHES.map((dish) => (
-              <DishCard key={dish.id} {...dish} />
+          <div className="featured-mosaic">
+            {MOCK_DISHES.map((dish, i) => (
+              <motion.div
+                key={dish.id}
+                className={`mosaic-card ${i === 0 ? 'mosaic-large' : ''}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+              >
+                <img src={dish.image} alt={dish.name} loading="lazy" />
+                <div className="mosaic-info">
+                  <h3 className="mosaic-name">{dish.name}</h3>
+                  <p className="mosaic-desc">{dish.description}</p>
+                  <span className="mosaic-price">{dish.price}</span>
+                </div>
+              </motion.div>
             ))}
           </div>
           <div className="mobile-only mt-6 text-center">
@@ -218,25 +265,34 @@ const Home = () => {
       </section>
 
       {/* 5. Gallery Preview */}
-      <section className="section gallery-preview-section overflow-hidden">
+      <section className="section gallery-preview-section">
         <div className="container">
-          <div className="text-center mb-10">
-            <h4 className="section-subtitle">Visual Feast</h4>
-            <h2 className="section-title">Our Ambience & Creations</h2>
+          <div className="gallery-header">
+            <div>
+              <h4 className="section-subtitle">Visual Feast</h4>
+              <h2 className="section-title gallery-title">Our ambience & <span className="highlight-mark">creations.</span></h2>
+            </div>
+            <p className="gallery-header-desc text-secondary">
+              Warm light, plated art and a room that hums. A glimpse of an evening at Tomine.
+            </p>
           </div>
-        </div>
-        
-        <div className="gallery-marquee">
-          <div className="gallery-track">
-            {[...MOCK_GALLERY, ...MOCK_GALLERY, ...MOCK_GALLERY, ...MOCK_GALLERY].map((img, idx) => (
-              <div key={idx} className="gallery-slide">
-                <img src={img} alt="Restaurant gallery item" loading="lazy" />
-              </div>
+
+          <div className="gallery-bento">
+            {GALLERY_SHOTS.map((shot, i) => (
+              <motion.div
+                key={shot.label}
+                className={`bento-item ${i === 0 ? 'bento-large' : ''} ${i === 1 ? 'bento-wide' : ''}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.12 }}
+              >
+                <img src={shot.image} alt={shot.label} loading="lazy" />
+                <span className="bento-label">{shot.label}</span>
+              </motion.div>
             ))}
           </div>
-        </div>
-        
-        <div className="container">
+
           <div className="text-center gallery-action-btn">
             <Link to="/gallery">
               <Button variant="outline">View Full Gallery</Button>
