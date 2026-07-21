@@ -151,8 +151,8 @@ const Home = () => {
                 className="about-image"
               />
               <div className="experience-badge glass-panel">
-                <span className="badge-number">15+</span>
-                <span className="badge-text">Years of<br/>Excellence</span>
+                <span className="badge-number">2017</span>
+                <span className="badge-text">Baking<br/>Fresh Since</span>
               </div>
             </motion.div>
             <motion.div 
@@ -163,12 +163,12 @@ const Home = () => {
               transition={{ duration: 0.8 }}
             >
               <h4 className="section-subtitle">Our Story</h4>
-              <h2 className="section-title">A Symphony of Fresh Ingredients and Passion</h2>
+              <h2 className="section-title">Baked Fresh Every Day Since 2017</h2>
               <p className="text-secondary mt-4 mb-4">
-                Since our founding, Tomine has been dedicated to reimagining the culinary landscape. We believe that a meal is more than just food—it's an experience that brings people together, evoking passion and memories.
+                What began in 2017 as a modest bakery with a single locally made oven has grown into a beloved part of our community—fresh bakery favourites in the morning and comforting home-cooked meals all day.
               </p>
               <p className="text-secondary mb-4">
-                Our world-renowned chefs meticulously source seasonal, local ingredients to craft dishes that look as beautiful as they taste.
+                We remain family-owned, deeply hands-on, and committed to premium ingredients and heartfelt hospitality across our two vibrant branches.
               </p>
               <Link to="/about">
                 <Button variant="outline" className="mt-4 icon-btn">
