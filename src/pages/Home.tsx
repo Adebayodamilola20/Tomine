@@ -24,37 +24,37 @@ const MOCK_DISHES = [
   {
     id: '1',
     image: path1,
-    name: 'Grilled Salmon Puree',
-    description: 'Fresh Atlantic salmon perfectly grilled with a side of asparagus and lemon butter sauce.',
-    price: '₦ 24,000'
+    name: 'Jollof Rice',
+    description: 'Smoky, party-style jollof rice cooked in a rich tomato and pepper base.',
+    price: '₦ 1,000'
   },
   {
     id: '2',
     image: path2,
-    name: 'Truffle Mushroom Risotto',
-    description: 'Creamy Arborio rice slow-cooked with white wine, parmesan cheese, and black truffle shavings.',
-    price: '₦ 21,000'
+    name: 'Egusi Soup',
+    description: 'Melon-seed soup simmered with tender leafy greens — perfect with any swallow.',
+    price: '₦ 1,000'
   },
   {
     id: '3',
     image: path3,
-    name: 'Wagyu Beef Steak',
-    description: 'Premium A5 grade beef served with roasted rustic potatoes and red wine reduction.',
-    price: '₦ 55,000'
+    name: 'Croaker Fish',
+    description: 'Fresh croaker fish in a peppery sauce, grilled and seasoned to order.',
+    price: '₦ 3,500'
   },
   {
     id: '4',
     image: path4,
-    name: 'Lobster Ravioli',
-    description: 'Handmade ravioli stuffed with lobster and ricotta in a creamy vodka pink sauce.',
-    price: '₦ 28,000'
+    name: 'Chicken Pie',
+    description: 'Golden, flaky pastry filled with seasoned chicken and vegetables, baked fresh daily.',
+    price: '₦ 1,000'
   },
   {
     id: '5',
     image: path5,
-    name: 'Signature Negroni',
-    description: 'Gin, vermouth rosso, and Campari, garnished with orange peel.',
-    price: '₦ 12,000'
+    name: 'Parfait',
+    description: 'Layered yoghurt parfait with fresh fruit and crunchy granola.',
+    price: '₦ 3,000'
   }
 ];
 
@@ -185,7 +185,7 @@ const Home = () => {
         <div className="container">
           <div className="section-header flex justify-between items-center mb-10">
             <div>
-              <h4 className="section-subtitle">Chef's Selection</h4>
+              <h4 className="section-subtitle">Customer Favourites</h4>
               <h2 className="section-title">Featured Delights</h2>
             </div>
             <Link to="/menu" className="desktop-only text-primary flex items-center gap-sm slide-link">

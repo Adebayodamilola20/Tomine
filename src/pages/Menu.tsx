@@ -1,55 +1,92 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DishCard, { type DishCardProps } from '../components/ui/DishCard';
 import './Menu.css';
 
-import path1 from '../assets/path1.jpg';
-import path2 from '../assets/path2.jpg';
-import path3 from '../assets/path3.jpg';
-import path4 from '../assets/path4.jpg';
-import path5 from '../assets/path5.jpg';
-import path6 from '../assets/path6.jpg';
-
-interface MenuItem extends DishCardProps {
-  category: string;
+interface MenuItem {
+  name: string;
+  price: string;
+  note?: string;
 }
 
-const MENU_CATEGORIES = ['All', 'Starters', 'Main Dishes', 'Desserts', 'Drinks'];
+interface MenuSection {
+  category: string;
+  items: MenuItem[];
+}
 
-const MENU_DATA: MenuItem[] = [
-  // Starters
-  { id: 'm1', category: 'Starters', image: path1, name: 'Bruschetta al Pomodoro', description: 'Grilled bread rubbed with garlic and topped with olive oil, salt, and fresh tomatoes.', price: '₦ 8,500' },
-  { id: 'm2', category: 'Starters', image: path2, name: 'Crispy Calamari', description: 'Lightly breaded calamari rings served with a spicy marinara dipping sauce.', price: '₦ 12,000' },
-  { id: 'm3', category: 'Starters', image: path3, name: 'Caprese Salad', description: 'Fresh mozzarella, tomatoes, and sweet basil, seasoned with salt and olive oil.', price: '₦ 9,500' },
-  
-  // Main Dishes
-  { id: 'm4', category: 'Main Dishes', image: path4, name: 'Grilled Salmon Puree', description: 'Fresh Atlantic salmon perfectly grilled with a side of asparagus and lemon butter.', price: '₦ 24,000' },
-  { id: 'm5', category: 'Main Dishes', image: path5, name: 'Wagyu Beef Steak', description: 'Premium A5 grade beef served with roasted rustic potatoes and red wine reduction.', price: '₦ 55,000' },
-  { id: 'm6', category: 'Main Dishes', image: path6, name: 'Truffle Mushroom Risotto', description: 'Creamy Arborio rice slow-cooked with white wine, parmesan cheese, and truffle.', price: '₦ 21,000' },
-  { id: 'm7', category: 'Main Dishes', image: path1, name: 'Lobster Ravioli', description: 'Handmade ravioli stuffed with lobster and ricotta in a creamy vodka pink sauce.', price: '₦ 28,000' },
-
-  // Desserts
-  { id: 'm8', category: 'Desserts', image: path2, name: 'Classic Tiramisu', description: 'Coffee-flavoured Italian dessert dusted with cocoa powder.', price: '₦ 8,500' },
-  { id: 'm9', category: 'Desserts', image: path3, name: 'Molten Lava Cake', description: 'Warm chocolate cake with a gooey center, served with vanilla bean ice cream.', price: '₦ 10,000' },
-  
-  // Drinks
-  { id: 'm10', category: 'Drinks', image: path4, name: 'Signature Negroni', description: 'Gin, vermouth rosso, and Campari, garnished with orange peel.', price: '₦ 12,000' },
-  { id: 'm11', category: 'Drinks', image: path5, name: 'Citrus Sparkler', description: 'Refreshing mocktail with fresh lemon, lime, mint, and sparkling water.', price: '₦ 6,000' },
+const MENU: MenuSection[] = [
+  {
+    category: 'Pastries',
+    items: [
+      { name: 'Ring Doughnut', price: '₦500' },
+      { name: 'Meat Pie', price: '₦1,000' },
+      { name: 'Chicken Pie', price: '₦1,000' },
+      { name: 'Beef Roll', price: '₦600' },
+      { name: 'Frank Roll', price: '₦500' },
+      { name: 'Chocolate Doughnut', price: '₦1,000' },
+      { name: 'Jam Doughnut', price: '₦500' },
+      { name: 'Milky Doughnut', price: '₦500' },
+      { name: 'Egg Roll', price: '₦500' },
+      { name: 'Scotch Egg', price: '₦700' },
+      { name: 'Cup Cake', price: '₦500' },
+    ],
+  },
+  {
+    category: 'Meals & Proteins',
+    items: [
+      { name: 'Jollof Rice', price: '₦1,000' },
+      { name: 'Fried Rice', price: '₦1,000' },
+      { name: 'White Rice & Beans', price: '₦1,000' },
+      { name: 'Eba', price: '₦1,000' },
+      { name: 'Pounded Yam', price: '₦1,000' },
+      { name: 'Semo', price: '₦4,500' },
+      { name: 'Efo-Riro Soup', price: '₦1,000' },
+      { name: 'Egusi Soup', price: '₦1,000' },
+      { name: 'Panla Fish', price: '₦1,000' },
+      { name: 'Croaker Fish', price: '₦3,500' },
+      { name: 'Roasted Chicken', price: '₦2,500' },
+      { name: '¼ Roasted Chicken', price: '₦4,500' },
+      { name: 'Turkey', price: '₦4,000' },
+      { name: 'Boiled Egg', price: '₦500' },
+    ],
+  },
+  {
+    category: 'Drinks',
+    items: [
+      { name: 'Fanta', price: '₦500', note: '50CL' },
+      { name: 'Coca-Cola', price: '₦500', note: '50CL' },
+      { name: 'Sprite', price: '₦500', note: '50CL' },
+      { name: 'Pepsi', price: '₦500', note: '50CL' },
+      { name: '7-Up', price: '₦500', note: '50CL' },
+      { name: '7-Up Can', price: '₦650', note: '33CL' },
+      { name: 'Coca-Cola Can', price: '₦650', note: '33CL' },
+      { name: 'Fanta Can', price: '₦650', note: '33CL' },
+      { name: 'Eva Water', price: '₦400', note: '75CL' },
+      { name: 'Aquafina Water', price: '₦300' },
+      { name: 'Maltina', price: '₦600' },
+      { name: 'Maltina Can', price: '₦800', note: '33CL' },
+      { name: 'Malta Guinness Can', price: '₦800', note: '33CL' },
+      { name: 'Parfait', price: '₦3,000' },
+      { name: 'Vita Milk', price: '₦1,800' },
+    ],
+  },
 ];
+
+const MENU_CATEGORIES = ['All', ...MENU.map((s) => s.category)];
 
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const filteredData = activeCategory === 'All' 
-    ? MENU_DATA 
-    : MENU_DATA.filter(item => item.category === activeCategory);
+  const sections =
+    activeCategory === 'All'
+      ? MENU
+      : MENU.filter((s) => s.category === activeCategory);
 
   return (
     <div className="menu-page pb-20">
       {/* Menu Header */}
       <section className="menu-hero flex items-center justify-center text-center">
         <div className="menu-hero-overlay"></div>
-        <motion.div 
+        <motion.div
           className="container relative z-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,7 +94,7 @@ const Menu = () => {
         >
           <h1 className="text-white text-5xl md:text-6xl font-bold mb-4">Our Menu</h1>
           <p className="text-white text-xl opacity-90 max-w-2xl mx-auto">
-            A curated selection of extraordinary dishes prepared with love and precision.
+            Freshly baked pastries, hearty home-cooked meals, and cold drinks — made daily with love.
           </p>
         </motion.div>
       </section>
@@ -65,7 +102,7 @@ const Menu = () => {
       {/* Menu Filter */}
       <section className="menu-filter-section container text-center mt-12 mb-10">
         <div className="menu-tabs">
-          {MENU_CATEGORIES.map(category => (
+          {MENU_CATEGORIES.map((category) => (
             <button
               key={category}
               className={`menu-tab ${activeCategory === category ? 'active' : ''}`}
@@ -73,10 +110,10 @@ const Menu = () => {
             >
               {category}
               {activeCategory === category && (
-                <motion.div 
+                <motion.div
                   className="menu-tab-indicator"
                   layoutId="activeTab"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 />
               )}
             </button>
@@ -84,38 +121,38 @@ const Menu = () => {
         </div>
       </section>
 
-      {/* Menu Grid */}
+      {/* Menu Sections */}
       <section className="container">
-        <motion.div 
-          className="grid grid-cols-3 gap-lg menu-grid"
-          layout
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredData.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4 }}
-              >
-                <DishCard 
-                  image={item.image}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                />
-              </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+          >
+            {sections.map((section) => (
+              <div key={section.category} className="menu-section">
+                <div className="menu-section-header">
+                  <h2 className="menu-section-title">{section.category}</h2>
+                  <span className="menu-section-line" />
+                </div>
+                <ul className="menu-list">
+                  {section.items.map((item) => (
+                    <li key={item.name} className="menu-list-item">
+                      <span className="menu-item-name">
+                        {item.name}
+                        {item.note && <span className="menu-item-note">{item.note}</span>}
+                      </span>
+                      <span className="menu-item-dots" aria-hidden="true" />
+                      <span className="menu-item-price">{item.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {filteredData.length === 0 && (
-          <div className="text-center py-20">
-            <h3 className="text-2xl text-secondary">No items found in this category.</h3>
-          </div>
-        )}
+          </motion.div>
+        </AnimatePresence>
       </section>
     </div>
   );
