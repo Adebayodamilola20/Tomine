@@ -2,9 +2,53 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Menu.css';
 
+import ringDoughnut from '../assets/menu/ring-doughnut.jpg';
+import meatPie from '../assets/menu/meat-pie.jpg';
+import chickenPie from '../assets/menu/chicken-pie.jpg';
+import beefRoll from '../assets/menu/beef-roll.jpg';
+import frankRoll from '../assets/menu/frank-roll.jpg';
+import chocolateDoughnut from '../assets/menu/chocolate-doughnut.jpg';
+import jamDoughnut from '../assets/menu/jam-doughnut.jpg';
+import milkyDoughnut from '../assets/menu/milky-doughnut.jpg';
+import eggRoll from '../assets/menu/egg-roll.jpg';
+import scotchEgg from '../assets/menu/scotch-egg.jpg';
+import cupCake from '../assets/menu/cup-cake.jpg';
+
+import jollofRice from '../assets/menu/jollof-rice.jpg';
+import friedRice from '../assets/menu/fried-rice.jpg';
+import whiteRiceBeans from '../assets/menu/white-rice-beans.jpg';
+import eba from '../assets/menu/eba.jpg';
+import poundedYam from '../assets/menu/pounded-yam.jpg';
+import semo from '../assets/menu/semo.jpg';
+import efoRiro from '../assets/menu/efo-riro.jpg';
+import egusi from '../assets/menu/egusi.jpg';
+import panlaFish from '../assets/menu/panla-fish.jpg';
+import croakerFish from '../assets/menu/croaker-fish.jpg';
+import roastedChicken from '../assets/menu/roasted-chicken.jpg';
+import quarterChicken from '../assets/menu/quarter-chicken.jpg';
+import turkey from '../assets/menu/turkey.jpg';
+import boiledEgg from '../assets/menu/boiled-egg.jpg';
+
+import fanta from '../assets/menu/fanta.jpg';
+import cocaCola from '../assets/menu/coca-cola.jpg';
+import sprite from '../assets/menu/sprite.jpg';
+import pepsi from '../assets/menu/pepsi.jpg';
+import sevenUp from '../assets/menu/seven-up.jpg';
+import sevenUpCan from '../assets/menu/seven-up-can.jpg';
+import cocaColaCan from '../assets/menu/coca-cola-can.jpg';
+import fantaCan from '../assets/menu/fanta-can.jpg';
+import evaWater from '../assets/menu/eva-water.jpg';
+import aquafina from '../assets/menu/aquafina.jpg';
+import maltina from '../assets/menu/maltina.jpg';
+import maltinaCan from '../assets/menu/maltina-can.jpg';
+import maltaGuinnessCan from '../assets/menu/malta-guinness-can.jpg';
+import parfait from '../assets/menu/parfait.jpg';
+import vitaMilk from '../assets/menu/vita-milk.jpg';
+
 interface MenuItem {
   name: string;
   price: string;
+  image: string;
   note?: string;
 }
 
@@ -17,56 +61,56 @@ const MENU: MenuSection[] = [
   {
     category: 'Pastries',
     items: [
-      { name: 'Ring Doughnut', price: '₦500' },
-      { name: 'Meat Pie', price: '₦1,000' },
-      { name: 'Chicken Pie', price: '₦1,000' },
-      { name: 'Beef Roll', price: '₦600' },
-      { name: 'Frank Roll', price: '₦500' },
-      { name: 'Chocolate Doughnut', price: '₦1,000' },
-      { name: 'Jam Doughnut', price: '₦500' },
-      { name: 'Milky Doughnut', price: '₦500' },
-      { name: 'Egg Roll', price: '₦500' },
-      { name: 'Scotch Egg', price: '₦700' },
-      { name: 'Cup Cake', price: '₦500' },
+      { name: 'Ring Doughnut', price: '₦500', image: ringDoughnut },
+      { name: 'Meat Pie', price: '₦1,000', image: meatPie },
+      { name: 'Chicken Pie', price: '₦1,000', image: chickenPie },
+      { name: 'Beef Roll', price: '₦600', image: beefRoll },
+      { name: 'Frank Roll', price: '₦500', image: frankRoll },
+      { name: 'Chocolate Doughnut', price: '₦1,000', image: chocolateDoughnut },
+      { name: 'Jam Doughnut', price: '₦500', image: jamDoughnut },
+      { name: 'Milky Doughnut', price: '₦500', image: milkyDoughnut },
+      { name: 'Egg Roll', price: '₦500', image: eggRoll },
+      { name: 'Scotch Egg', price: '₦700', image: scotchEgg },
+      { name: 'Cup Cake', price: '₦500', image: cupCake },
     ],
   },
   {
     category: 'Meals & Proteins',
     items: [
-      { name: 'Jollof Rice', price: '₦1,000' },
-      { name: 'Fried Rice', price: '₦1,000' },
-      { name: 'White Rice & Beans', price: '₦1,000' },
-      { name: 'Eba', price: '₦1,000' },
-      { name: 'Pounded Yam', price: '₦1,000' },
-      { name: 'Semo', price: '₦4,500' },
-      { name: 'Efo-Riro Soup', price: '₦1,000' },
-      { name: 'Egusi Soup', price: '₦1,000' },
-      { name: 'Panla Fish', price: '₦1,000' },
-      { name: 'Croaker Fish', price: '₦3,500' },
-      { name: 'Roasted Chicken', price: '₦2,500' },
-      { name: '¼ Roasted Chicken', price: '₦4,500' },
-      { name: 'Turkey', price: '₦4,000' },
-      { name: 'Boiled Egg', price: '₦500' },
+      { name: 'Jollof Rice', price: '₦1,000', image: jollofRice },
+      { name: 'Fried Rice', price: '₦1,000', image: friedRice },
+      { name: 'White Rice & Beans', price: '₦1,000', image: whiteRiceBeans },
+      { name: 'Eba', price: '₦1,000', image: eba },
+      { name: 'Pounded Yam', price: '₦1,000', image: poundedYam },
+      { name: 'Semo', price: '₦4,500', image: semo },
+      { name: 'Efo-Riro Soup', price: '₦1,000', image: efoRiro },
+      { name: 'Egusi Soup', price: '₦1,000', image: egusi },
+      { name: 'Panla Fish', price: '₦1,000', image: panlaFish },
+      { name: 'Croaker Fish', price: '₦3,500', image: croakerFish },
+      { name: 'Roasted Chicken', price: '₦2,500', image: roastedChicken },
+      { name: '¼ Roasted Chicken', price: '₦4,500', image: quarterChicken },
+      { name: 'Turkey', price: '₦4,000', image: turkey },
+      { name: 'Boiled Egg', price: '₦500', image: boiledEgg },
     ],
   },
   {
     category: 'Drinks',
     items: [
-      { name: 'Fanta', price: '₦500', note: '50CL' },
-      { name: 'Coca-Cola', price: '₦500', note: '50CL' },
-      { name: 'Sprite', price: '₦500', note: '50CL' },
-      { name: 'Pepsi', price: '₦500', note: '50CL' },
-      { name: '7-Up', price: '₦500', note: '50CL' },
-      { name: '7-Up Can', price: '₦650', note: '33CL' },
-      { name: 'Coca-Cola Can', price: '₦650', note: '33CL' },
-      { name: 'Fanta Can', price: '₦650', note: '33CL' },
-      { name: 'Eva Water', price: '₦400', note: '75CL' },
-      { name: 'Aquafina Water', price: '₦300' },
-      { name: 'Maltina', price: '₦600' },
-      { name: 'Maltina Can', price: '₦800', note: '33CL' },
-      { name: 'Malta Guinness Can', price: '₦800', note: '33CL' },
-      { name: 'Parfait', price: '₦3,000' },
-      { name: 'Vita Milk', price: '₦1,800' },
+      { name: 'Fanta', price: '₦500', note: '50CL', image: fanta },
+      { name: 'Coca-Cola', price: '₦500', note: '50CL', image: cocaCola },
+      { name: 'Sprite', price: '₦500', note: '50CL', image: sprite },
+      { name: 'Pepsi', price: '₦500', note: '50CL', image: pepsi },
+      { name: '7-Up', price: '₦500', note: '50CL', image: sevenUp },
+      { name: '7-Up Can', price: '₦650', note: '33CL', image: sevenUpCan },
+      { name: 'Coca-Cola Can', price: '₦650', note: '33CL', image: cocaColaCan },
+      { name: 'Fanta Can', price: '₦650', note: '33CL', image: fantaCan },
+      { name: 'Eva Water', price: '₦400', note: '75CL', image: evaWater },
+      { name: 'Aquafina Water', price: '₦300', image: aquafina },
+      { name: 'Maltina', price: '₦600', image: maltina },
+      { name: 'Maltina Can', price: '₦800', note: '33CL', image: maltinaCan },
+      { name: 'Malta Guinness Can', price: '₦800', note: '33CL', image: maltaGuinnessCan },
+      { name: 'Parfait', price: '₦3,000', image: parfait },
+      { name: 'Vita Milk', price: '₦1,800', image: vitaMilk },
     ],
   },
 ];
@@ -137,18 +181,35 @@ const Menu = () => {
                   <h2 className="menu-section-title">{section.category}</h2>
                   <span className="menu-section-line" />
                 </div>
-                <ul className="menu-list">
-                  {section.items.map((item) => (
-                    <li key={item.name} className="menu-list-item">
-                      <span className="menu-item-name">
-                        {item.name}
-                        {item.note && <span className="menu-item-note">{item.note}</span>}
-                      </span>
-                      <span className="menu-item-dots" aria-hidden="true" />
-                      <span className="menu-item-price">{item.price}</span>
-                    </li>
+
+                <div className="menu-grid">
+                  {section.items.map((item, index) => (
+                    <motion.article
+                      key={item.name}
+                      className="menu-card"
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-60px' }}
+                      transition={{ duration: 0.45, delay: (index % 4) * 0.06 }}
+                    >
+                      <div className="menu-card-media">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <div className="menu-card-body">
+                        <h3 className="menu-card-name">
+                          {item.name}
+                          {item.note && <span className="menu-card-note">{item.note}</span>}
+                        </h3>
+                        <span className="menu-card-price">{item.price}</span>
+                      </div>
+                    </motion.article>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </motion.div>

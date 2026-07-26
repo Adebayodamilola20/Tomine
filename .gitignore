@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw menu photo originals (staging, not shipped)
+.menu-photos-raw/
