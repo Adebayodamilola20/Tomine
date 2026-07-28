@@ -1,7 +1,7 @@
 /** Everything that points outside this site lives here. */
 
 /** The main Tomine website. Update if the domain changes. */
-export const MAIN_SITE_URL = 'https://tominarestaurant.com';
+export const MAIN_SITE_URL = 'https://tomine-mu.vercel.app/';
 
 export const CONTACT = {
   city: 'Lagos, Nigeria',
