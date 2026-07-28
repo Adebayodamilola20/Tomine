@@ -158,3 +158,12 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
+/* Theme-aware assets — the logo ships in a dark-ink and a cream version, and
+   only one of the pair is ever on screen. The class is doubled so component
+   stylesheets loaded later can't win on source order. */
+.light-only.light-only { display: block; }
+.dark-only.dark-only { display: none; }
+
+:root.dark-mode .light-only.light-only { display: none; }
+:root.dark-mode .dark-only.dark-only { display: block; }

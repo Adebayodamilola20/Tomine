@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Button from '../ui/Button';
+import logoMark from '../../assets/logo-mark.png';
+import logoMarkLight from '../../assets/logo-mark-light.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -36,8 +38,12 @@ const Navbar = () => {
     <>
       <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
         <div className="container navbar-container">
-          <Link to="/" className="navbar-logo">
-            Tomine<span>.</span>
+          <Link to="/" className="navbar-logo" aria-label="Tomine Restaurant — home">
+            <img className="navbar-logo-mark light-only" src={logoMark} alt="" />
+            <img className="navbar-logo-mark dark-only" src={logoMarkLight} alt="" />
+            <span className="navbar-logo-text">
+              Tomine<span>.</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}

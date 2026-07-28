@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Camera, Share2, MessageCircle, MapPin, Phone, Mail } from 'lucide-react';
 import './Footer.css';
 import Button from '../ui/Button';
+import logo from '../../assets/logo.png';
+import logoLight from '../../assets/logo-light.png';
 
 const Footer = () => {
   return (
@@ -10,7 +12,10 @@ const Footer = () => {
         <div className="grid grid-cols-4 gap-xl footer-grid">
           {/* Brand */}
           <div className="footer-col brand-col">
-            <Link to="/" className="footer-logo">Tomine<span>.</span></Link>
+            <Link to="/" className="footer-logo" aria-label="Tomine Restaurant — home">
+              <img className="footer-logo-img light-only" src={logo} alt="Tomine Restaurant" />
+              <img className="footer-logo-img dark-only" src={logoLight} alt="Tomine Restaurant" />
+            </Link>
             <p className="text-secondary mt-4">Experience taste like never before. A harmonious blend of tradition and modern culinary artistry.</p>
             <div className="social-links mt-6">
               <a href="#" className="social-icon"><Camera size={20} /></a>

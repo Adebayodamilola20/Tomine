@@ -1,0 +1,1152 @@
+/* ==========================================================================
+   Tomine — The Menu (standalone site)
+   Warm cream fine-dining: cream canvas, deep green and terracotta accents,
+   Playfair Display over Karla. Light only — this is a printed menu on screen.
+   ========================================================================== */
+
+:root {
+  --cream: #faf4ea;
+  --surface: #fffdf9;
+  --surface-deep: #f1e6d4;
+  --ink: #1b1813;
+  --ink-soft: #5c5346;
+  --terracotta: #b4552b;
+  --green: #2c4438;
+  --hairline: rgba(27, 24, 19, 0.12);
+
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --shell: min(1180px, 100% - 3rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Anchored sections clear the fixed header. */
+  scroll-padding-top: 6.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Lenis (smooth scrolling) — its own scrolling replaces the CSS one. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.08;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------- header -- */
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.6rem 1rem;
+  background: var(--green);
+  color: var(--cream);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.site-header.is-lifted {
+  background: rgba(250, 244, 234, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--hairline);
+}
+
+.site-header-inner {
+  width: var(--shell);
+  margin: 0 auto;
+  min-height: 4.75rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+}
+
+.wordmark-mark {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.3s var(--ease);
+}
+
+.wordmark:hover .wordmark-mark {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.wordmark-sub {
+  align-self: flex-end;
+  padding-bottom: 0.35rem;
+}
+
+.wordmark-sub {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.section-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 1.75rem;
+}
+
+.section-nav-link {
+  position: relative;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 0.25rem;
+  transition: color 0.2s var(--ease);
+}
+
+.section-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--terracotta);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease);
+}
+
+.section-nav-link:hover,
+.section-nav-link.is-active {
+  color: var(--ink);
+}
+
+.section-nav-link.is-active::after,
+.section-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.header-cta {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  gap: 0.4rem;
+  white-space: nowrap;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.header-cta:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--cream);
+}
+
+/* ----------------------------------------------------------------- hero -- */
+
+.hero {
+  padding: 9rem 0 5rem;
+}
+
+.hero-inner {
+  width: var(--shell);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1.5fr) 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-copy {
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 11vw, 7.5rem);
+  letter-spacing: -0.02em;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.hero-title em {
+  display: block;
+  font-style: italic;
+  color: var(--terracotta);
+}
+
+.hero-lede {
+  max-width: 34ch;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+}
+
+.hero-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color 0.2s var(--ease);
+}
+
+.hero-cue:hover {
+  color: var(--ink);
+}
+
+.hero-cue-rule {
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(var(--hairline), transparent);
+}
+
+.hero-plate {
+  margin: 0;
+}
+
+.hero-plate-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 999px 999px 8px 8px;
+  background: var(--surface-deep);
+  box-shadow: 0 24px 48px -32px rgba(27, 24, 19, 0.5);
+}
+
+/* The reel crossfades, so every photo sits in the same place. */
+.hero-plate-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fixed height so the crossfading caption never nudges the layout. */
+.hero-plate-caption {
+  position: relative;
+  height: 2.2rem;
+  margin-top: 0.9rem;
+}
+
+.hero-plate-name {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.hero-plate-left {
+  transform: translateY(-1.5rem);
+}
+
+.hero-plate-right {
+  transform: translateY(1.5rem);
+}
+
+/* ----------------------------------------------------------- rail (sm) -- */
+
+/* Phones and small tablets lose the header nav, so the sections get a sticky
+   rail of their own. Hidden entirely once .section-nav comes back. */
+.section-rail {
+  display: none;
+  position: sticky;
+  top: 4.75rem;
+  z-index: 30;
+  margin-bottom: -1rem;
+  padding: 0.6rem 0 1rem;
+  /* Opaque behind the pills, then fades so the menu slides up underneath. */
+  background: linear-gradient(var(--cream) 76%, rgba(250, 244, 234, 0));
+}
+
+.section-rail-track {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  padding-inline: max(1.25rem, env(safe-area-inset-left))
+    max(1.25rem, env(safe-area-inset-right));
+  scroll-padding-inline: 1.25rem;
+}
+
+.section-rail-track::-webkit-scrollbar {
+  display: none;
+}
+
+.rail-pill {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 1.1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-soft);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The green slides between pills instead of blinking on and off. */
+.rail-pill-fill {
+  position: absolute;
+  inset: -1px;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.rail-pill-label {
+  position: relative;
+}
+
+.rail-pill.is-active {
+  color: var(--cream);
+  border-color: transparent;
+}
+
+.rail-pill:active {
+  transform: scale(0.97);
+}
+
+/* ------------------------------------------------------------- sections -- */
+
+.menu-body {
+  width: var(--shell);
+  margin: 0 auto;
+  padding-bottom: 5rem;
+}
+
+.menu-section {
+  padding: 4.5rem 0 1rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2.75rem;
+}
+
+.section-numeral {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--terracotta);
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+
+.section-count {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- cards -- */
+
+.dish-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2.5rem 2rem;
+}
+
+.dish-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dish-media {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px 999px 10px 10px;
+  background: var(--surface-deep);
+  box-shadow: 0 18px 36px -30px rgba(27, 24, 19, 0.6);
+}
+
+.dish-media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.dish-button:hover .dish-media img {
+  transform: scale(1.05);
+}
+
+.dish-media-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 5;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.dish-body {
+  display: block;
+  margin-top: 1.1rem;
+}
+
+.dish-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.dish-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.dish-leader {
+  flex: 1;
+  height: 0;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted rgba(27, 24, 19, 0.28);
+  transform: translateY(-0.28em);
+}
+
+.dish-price {
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--terracotta);
+  white-space: nowrap;
+}
+
+.dish-note {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------ interlude -- */
+
+.interlude {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  background: var(--green);
+  color: var(--cream);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+  text-align: center;
+}
+
+.interlude p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: 1.4;
+  max-width: 26ch;
+  margin: 0 auto;
+}
+
+/* ------------------------------------------------------------- lightbox -- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(27, 24, 19, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-panel {
+  position: relative;
+  width: min(420px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 0.75rem 0.75rem 1.5rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 253, 249, 0.9);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+
+.lightbox-close:hover {
+  background: var(--surface-deep);
+}
+
+.lightbox-media {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.lightbox-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  background: var(--surface-deep);
+}
+
+.lightbox-image-empty {
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.lightbox-caption {
+  padding: 1.25rem 0.75rem 0;
+  text-align: center;
+}
+
+.lightbox-caption h3 {
+  font-size: 1.5rem;
+}
+
+.lightbox-note {
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.lightbox-price {
+  margin-top: 0.6rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--terracotta);
+}
+
+.order-button {
+  margin-top: 1.4rem;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.5rem;
+  border-radius: 999px;
+  background: var(--green);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+}
+
+.order-button:hover {
+  background: #21332a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -14px rgba(27, 24, 19, 0.7);
+}
+
+.order-button:active {
+  transform: translateY(0);
+}
+
+.order-hint {
+  margin-top: 0.7rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------- lightbox as a sheet -- */
+
+/* On phones the panel stops being a floating card and becomes a sheet that
+   rises off the bottom edge — thumb-height, and swipeable away. */
+.lightbox.is-sheet {
+  align-items: flex-end;
+  padding: 0;
+}
+
+.lightbox.is-sheet .lightbox-panel {
+  width: 100%;
+  max-height: 92vh;
+  max-height: 92dvh;
+  border-radius: 22px 22px 0 0;
+  padding: 0 0.85rem calc(1.5rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -18px 48px -24px rgba(27, 24, 19, 0.65);
+}
+
+.sheet-grip {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  height: 2rem;
+  margin: 0 -0.85rem 0.35rem;
+  background: var(--surface);
+  border-radius: 22px 22px 0 0;
+  cursor: grab;
+  /* Let the pointer drag the sheet instead of scrolling the panel. */
+  touch-action: none;
+}
+
+.sheet-grip span {
+  width: 2.75rem;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(27, 24, 19, 0.2);
+}
+
+.lightbox.is-sheet .lightbox-close {
+  top: 2.6rem;
+  right: 1.1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 253, 249, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox.is-sheet .lightbox-image {
+  aspect-ratio: 4 / 3;
+}
+
+/* --------------------------------------------------------- order (fab) -- */
+
+.order-fab {
+  display: none;
+  position: fixed;
+  z-index: 45;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3.25rem;
+  padding: 0 1.35rem;
+  border-radius: 999px;
+  background: var(--green);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 30px -12px rgba(27, 24, 19, 0.6);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --------------------------------------------------------------- footer -- */
+
+.site-footer {
+  background: var(--green);
+  color: var(--cream);
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 2rem;
+}
+
+.site-footer-inner {
+  width: var(--shell);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.footer-logo {
+  width: 170px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.footer-city,
+.footer-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 244, 234, 0.66);
+}
+
+.footer-contact p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 1.1rem;
+}
+
+.footer-contact a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(250, 244, 234, 0.28);
+  align-self: flex-start;
+  padding-bottom: 1px;
+  transition: border-color 0.2s var(--ease);
+}
+
+.footer-contact a:hover {
+  border-color: var(--cream);
+}
+
+.footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.footer-cta {
+  background: var(--cream);
+  color: var(--green);
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.2s var(--ease);
+}
+
+.footer-cta:hover {
+  background: #fff;
+}
+
+.footer-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(250, 244, 234, 0.8);
+  transition: color 0.2s var(--ease);
+}
+
+.footer-link:hover {
+  color: var(--cream);
+}
+
+.footer-fineprint {
+  width: var(--shell);
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(250, 244, 234, 0.18);
+  font-size: 0.72rem;
+  color: rgba(250, 244, 234, 0.6);
+}
+
+/* ----------------------------------------------------------- responsive -- */
+
+@media (max-width: 900px) {
+  :root {
+    --shell: min(1180px, 100% - 2.5rem);
+  }
+
+  html {
+    /* Header plus the sticky section rail. */
+    scroll-padding-top: 9.5rem;
+  }
+
+  .hero {
+    padding: 7.5rem 0 2.5rem;
+  }
+
+  .hero-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.1rem;
+  }
+
+  .hero-copy {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  /* Keep a little of the desktop's off-kilter rhythm rather than a flat row. */
+  .hero-plate-left {
+    transform: translateY(-0.85rem);
+  }
+
+  .hero-plate-right {
+    transform: translateY(0.85rem);
+  }
+
+  .hero-cue {
+    margin-top: 1.75rem;
+  }
+
+  .hero-cue-rule {
+    height: 2rem;
+  }
+
+  .section-nav {
+    display: none;
+  }
+
+  /* …and the rail takes its place. */
+  .section-rail {
+    display: block;
+  }
+
+  /* Without the nav in the middle, the CTA has to push itself right. */
+  .header-cta {
+    margin-left: auto;
+  }
+
+  .order-fab {
+    display: inline-flex;
+  }
+
+  .section-title {
+    white-space: normal;
+  }
+
+  .menu-section {
+    padding: 3rem 0 1rem;
+  }
+
+  .section-head {
+    margin-bottom: 2rem;
+  }
+
+  /* Narrower cards, or a tablet only fits two enormous arches per screen. */
+  .dish-grid {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .dish-media {
+    border-radius: 999px 999px 8px 8px;
+  }
+
+  /* Fingers, not cursors: give every card a proper press. */
+  .dish-button:active .dish-media img {
+    transform: scale(1.04);
+  }
+
+  .dish-button:active .dish-name {
+    color: var(--terracotta);
+  }
+
+  .dish-button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --shell: min(1180px, 100% - 2rem);
+  }
+
+  html {
+    scroll-padding-top: 8.75rem;
+  }
+
+  .site-header-inner {
+    min-height: 4rem;
+    gap: 1rem;
+  }
+
+  .section-rail {
+    top: 4rem;
+  }
+
+  .section-rail-track {
+    padding-inline: max(1rem, env(safe-area-inset-left))
+      max(1rem, env(safe-area-inset-right));
+  }
+
+  .wordmark-sub {
+    display: none;
+  }
+
+  .wordmark {
+    font-size: 1.2rem;
+  }
+
+  .wordmark-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hero {
+    padding: 6.5rem 0 2rem;
+  }
+
+  .hero-title {
+    margin: 0.5rem 0 1rem;
+  }
+
+  .hero-lede {
+    font-size: 0.95rem;
+    max-width: 30ch;
+  }
+
+  .hero-plate-caption {
+    height: 1.9rem;
+    margin-top: 0.65rem;
+  }
+
+  .hero-plate-name {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+
+  .dish-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.75rem 1rem;
+  }
+
+  .dish-name {
+    font-size: 1rem;
+  }
+
+  .dish-body {
+    margin-top: 0.85rem;
+  }
+
+  .section-count {
+    display: none;
+  }
+
+  .site-footer {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+
+  /* The fab sits over the footer's own button, so give it room. */
+  .footer-actions {
+    padding-bottom: 3.5rem;
+  }
+}
+
+/* Very narrow phones — one dish at a time reads better than two cramped ones. */
+@media (max-width: 360px) {
+  .dish-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-plate-right {
+    display: none;
+  }
+
+  .hero-plate-left {
+    transform: none;
+    width: 68%;
+    margin: 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------- print -- */
+
+@media print {
+  .site-header,
+  .section-rail,
+  .order-fab,
+  .hero-plate,
+  .hero-cue,
+  .footer-actions,
+  .lightbox {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .interlude,
+  .site-footer {
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .dish-media {
+    display: none;
+  }
+
+  .dish-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 2rem;
+  }
+
+  .dish-body {
+    margin-top: 0;
+  }
+
+  .menu-section {
+    break-inside: avoid;
+    padding: 1.5rem 0;
+  }
+}
