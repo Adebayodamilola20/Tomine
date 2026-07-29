@@ -7,7 +7,7 @@ export const CONTACT = {
   city: 'Lagos, Nigeria',
   phone: '09036152411',
   phoneHref: 'tel:+2349036152411',
-  whatsapp: 'https://wa.me/2348023099837',
+  whatsapp: 'https://wa.me/2349036152411',
   email: 'hello@tominarestaurant.com',
 };
 

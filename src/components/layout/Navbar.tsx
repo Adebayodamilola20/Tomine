@@ -60,7 +60,7 @@ const Navbar = () => {
           </nav>
 
           <div className="navbar-actions desktop-only flex items-center gap-4">
-            <a href="https://wa.me/2348023099837" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/2349036152411" target="_blank" rel="noopener noreferrer">
               <Button variant="primary">Order Now</Button>
             </a>
           </div>
@@ -96,7 +96,7 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="mobile-menu-actions flex flex-col gap-4 mt-6">
-                <a href="https://wa.me/2348023099837" target="_blank" rel="noopener noreferrer" className="w-full">
+                <a href="https://wa.me/2349036152411" target="_blank" rel="noopener noreferrer" className="w-full">
                   <Button variant="primary" fullWidth>Order Now</Button>
                 </a>
               </div>
