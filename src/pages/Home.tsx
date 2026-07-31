@@ -147,8 +147,10 @@ const Home = () => {
             >
               <img 
                 src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop" 
-                alt="Chef preparing food" 
+                alt="Chef preparing food"
                 className="about-image"
+                loading="lazy"
+                decoding="async"
               />
               <div className="experience-badge glass-panel">
                 <span className="badge-number">2017</span>

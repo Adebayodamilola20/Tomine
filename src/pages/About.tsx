@@ -61,8 +61,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="about-gallery grid grid-cols-2 gap-sm"
           >
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=600&auto=format&fit=crop" alt="Restaurant interior" className="rounded-lg shadow-sm" />
-            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop" alt="Freshly baked bread" className="rounded-lg shadow-sm mt-10" />
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=600&auto=format&fit=crop" alt="Restaurant interior" className="rounded-lg shadow-sm" loading="lazy" decoding="async" />
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop" alt="Freshly baked bread" className="rounded-lg shadow-sm mt-10" loading="lazy" decoding="async" />
           </motion.div>
         </div>
       </section>

@@ -65,7 +65,7 @@ const Contact = () => {
               {/* Fake Google Map Placeholder that looks premium */}
               <div className="mock-map flex items-center justify-center bg-secondary w-full h-64 relative">
                 <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" alt="Map outline" className="w-full h-full object-cover opacity-30 grayscale" />
+                  <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" alt="Map outline" className="w-full h-full object-cover opacity-30 grayscale" loading="lazy" decoding="async" />
                 </div>
                 <div className="relative z-10 flex-col items-center justify-center text-center">
                   <MapPin size={40} className="text-primary mb-2 mx-auto" />

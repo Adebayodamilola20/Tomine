@@ -8,13 +8,25 @@ interface IntroScreenProps {
 
 const LETTERS = 'Tomine'.split('');
 
+/**
+ * The tagline is the last thing to land, at 1.6s + 0.7s. Holding much past
+ * that is just a finished animation sitting on screen between the visitor and
+ * the restaurant.
+ */
+const HOLD = 2500;
+
 const IntroScreen = ({ onComplete }: IntroScreenProps) => {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 3600);
+    const timer = setTimeout(onComplete, HOLD);
 
-    return () => clearTimeout(timer);
+    // The site is mounted underneath, so stop it scrolling behind the curtain.
+    const { overflow } = document.body.style;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = overflow;
+    };
   }, [onComplete]);
 
   return (

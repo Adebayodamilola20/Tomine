@@ -65,6 +65,15 @@
   box-sizing: border-box;
 }
 
+/* Sections slide in from the side, so before they scroll into view they are
+   still sitting 50px off their resting position and the one coming from the
+   right pokes past the viewport. `clip` trims that without turning the root
+   into a scroll container the way `hidden` would, which keeps sticky headers
+   working and stops the page measuring wider than the phone. */
+html {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-background);
@@ -72,7 +81,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {

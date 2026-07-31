@@ -1,26 +1,63 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
-import About from './pages/About';
-import Menu from './pages/Menu';
-import Gallery from './pages/Gallery';
-import Order from './pages/Order';
-import Contact from './pages/Contact';
 import IntroScreen from './components/ui/IntroScreen';
 
+/**
+ * Home ships in the main bundle because it is what almost everyone lands on.
+ * The rest are fetched when someone actually navigates to them, which keeps
+ * the first load from carrying five pages nobody has asked for yet.
+ */
+const About = lazy(() => import('./pages/About'));
+const Menu = lazy(() => import('./pages/Menu'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Order = lazy(() => import('./pages/Order'));
+const Contact = lazy(() => import('./pages/Contact'));
+
+/**
+ * The intro is a first-impression flourish, not a toll gate. Once per browser
+ * tab is plenty — refreshing or coming back from WhatsApp should drop you
+ * straight into the site.
+ */
+const introAlreadyPlayed = () => {
+  try {
+    return sessionStorage.getItem('tomine-intro') === 'done';
+  } catch {
+    // Private browsing can throw on storage access; just play it.
+    return false;
+  }
+};
+
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(
+    () => !introAlreadyPlayed() && !prefersReducedMotion()
+  );
+
+  const finishIntro = () => {
+    try {
+      sessionStorage.setItem('tomine-intro', 'done');
+    } catch {
+      // Nothing to do — the intro simply plays again next time.
+    }
+    setShowIntro(false);
+  };
 
   return (
     <>
       <AnimatePresence>
-        {showIntro && <IntroScreen onComplete={() => setShowIntro(false)} />}
+        {showIntro && <IntroScreen onComplete={finishIntro} />}
       </AnimatePresence>
-      
-      {!showIntro && (
-        <BrowserRouter>
+
+      {/* Mounted underneath the intro so the hero images and fonts are already
+          downloading while the wordmark animates, instead of starting from
+          scratch the moment it lifts away. */}
+      <BrowserRouter>
+        <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
@@ -31,8 +68,8 @@ function App() {
               <Route path="contact" element={<Contact />} />
             </Route>
           </Routes>
-        </BrowserRouter>
-      )}
+        </Suspense>
+      </BrowserRouter>
     </>
   );
 }
