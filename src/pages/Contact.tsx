@@ -42,7 +42,7 @@ const Contact = () => {
                 <div className="icon-circle border-primary text-primary"><MapPin size={24} /></div>
                 <div>
                   <h4 className="font-heading font-semibold text-xl">Address</h4>
-                  <p className="text-secondary">Lagos</p>
+                  <p className="text-secondary">110, Agura/Okeolokun Road, Gberigbe, Ikorodu, Lagos</p>
                 </div>
               </div>
               <div className="contact-info-item flex gap-md items-center mt-6">
@@ -50,6 +50,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-heading font-semibold text-xl">Phone</h4>
                   <p className="text-secondary">09036152411</p>
+                  <p className="text-secondary">WhatsApp: 07079322329</p>
                 </div>
               </div>
               <div className="contact-info-item flex gap-md items-center mt-6">

@@ -825,6 +825,13 @@ button {
   color: rgba(250, 244, 234, 0.66);
 }
 
+/* It is a real <address>, which browsers italicise by default. */
+.footer-city {
+  font-style: normal;
+  max-width: 22ch;
+  line-height: 1.7;
+}
+
 .footer-contact p {
   display: flex;
   flex-direction: column;

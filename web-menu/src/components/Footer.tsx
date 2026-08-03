@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="site-footer-inner">
         <div className="footer-brand">
           <img className="footer-logo" src={logoLight} alt="Tomine Restaurant" />
-          <p className="footer-city">{CONTACT.city}</p>
+          <address className="footer-city">{CONTACT.address}</address>
         </div>
 
         <div className="footer-contact">
@@ -19,6 +19,12 @@ export default function Footer() {
             <span className="footer-label">WhatsApp</span>
             <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer">
               Message us
+            </a>
+          </p>
+          <p>
+            <span className="footer-label">Also on</span>
+            <a href={CONTACT.whatsappAlt} target="_blank" rel="noreferrer">
+              {CONTACT.whatsappAltLabel}
             </a>
           </p>
           <p>

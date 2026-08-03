@@ -39,8 +39,9 @@ const Footer = () => {
           <div className="footer-col contact-col">
             <h4 className="footer-heading">Contact Us</h4>
             <ul className="footer-contact">
-              <li className="flex items-center gap-sm"><MapPin size={18} className="text-primary" /> <span>Lagos</span></li>
+              <li className="flex items-center gap-sm"><MapPin size={18} className="text-primary" /> <span>110, Agura/Okeolokun Road, Gberigbe, Ikorodu, Lagos</span></li>
               <li className="flex items-center gap-sm"><Phone size={18} className="text-primary" /> <span>09036152411</span></li>
+              <li className="flex items-center gap-sm"><MessageCircle size={18} className="text-primary" /> <span>07079322329</span></li>
               <li className="flex items-center gap-sm"><Mail size={18} className="text-primary" /> <span>hello@tominarestaurant.com</span></li>
             </ul>
           </div>
