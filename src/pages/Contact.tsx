@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Send } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { BRANCHES } from '../data/locations';
 import './OrderContact.css';
 
 const Contact = () => {
@@ -38,19 +39,23 @@ const Contact = () => {
             </p>
             
             <div className="contact-info-list flex-col gap-lg">
-              <div className="contact-info-item flex gap-md items-center">
-                <div className="icon-circle border-primary text-primary"><MapPin size={24} /></div>
-                <div>
-                  <h4 className="font-heading font-semibold text-xl">Address</h4>
-                  <p className="text-secondary">110, Agura/Okeolokun Road, Gberigbe, Ikorodu, Lagos</p>
+              {BRANCHES.map((branch) => (
+                <div className="contact-info-item flex gap-md items-center" key={branch.name}>
+                  <div className="icon-circle border-primary text-primary"><MapPin size={24} /></div>
+                  <div>
+                    <h4 className="font-heading font-semibold text-xl">{branch.name}</h4>
+                    <p className="text-secondary">{branch.address}</p>
+                    <p className="text-secondary">
+                      <a href={branch.phoneHref}>{branch.phone}</a>
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ))}
               <div className="contact-info-item flex gap-md items-center mt-6">
                 <div className="icon-circle border-primary text-primary"><Phone size={24} /></div>
                 <div>
-                  <h4 className="font-heading font-semibold text-xl">Phone</h4>
-                  <p className="text-secondary">09036152411</p>
-                  <p className="text-secondary">WhatsApp: 07079322329</p>
+                  <h4 className="font-heading font-semibold text-xl">WhatsApp</h4>
+                  <p className="text-secondary">07079322329</p>
                 </div>
               </div>
               <div className="contact-info-item flex gap-md items-center mt-6">

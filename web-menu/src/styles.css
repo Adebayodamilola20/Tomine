@@ -825,11 +825,32 @@ button {
   color: rgba(250, 244, 234, 0.66);
 }
 
-/* It is a real <address>, which browsers italicise by default. */
-.footer-city {
+/* One block per branch, matching the contact column's rhythm. */
+.footer-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 1.4rem;
+}
+
+.footer-branch address {
+  /* A real <address>, which browsers italicise by default. */
   font-style: normal;
-  max-width: 22ch;
-  line-height: 1.7;
+  max-width: 24ch;
+  line-height: 1.6;
+}
+
+.footer-branch a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(250, 244, 234, 0.28);
+  align-self: flex-start;
+  padding-bottom: 1px;
+  margin-top: 0.2rem;
+  transition: border-color 0.2s var(--ease);
+}
+
+.footer-branch a:hover {
+  border-color: rgba(250, 244, 234, 0.7);
 }
 
 .footer-contact p {

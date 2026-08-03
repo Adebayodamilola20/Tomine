@@ -1,4 +1,4 @@
-import { CONTACT, MAIN_SITE_URL } from '../config';
+import { BRANCHES, CONTACT, MAIN_SITE_URL } from '../config';
 import logoLight from '@tomine/assets/logo-light.png';
 
 export default function Footer() {
@@ -7,14 +7,20 @@ export default function Footer() {
       <div className="site-footer-inner">
         <div className="footer-brand">
           <img className="footer-logo" src={logoLight} alt="Tomine Restaurant" />
-          <address className="footer-city">{CONTACT.address}</address>
+          <p className="footer-city">Two kitchens in Lagos</p>
+        </div>
+
+        <div className="footer-branches">
+          {BRANCHES.map((branch) => (
+            <div className="footer-branch" key={branch.name}>
+              <span className="footer-label">{branch.name}</span>
+              <address>{branch.address}</address>
+              <a href={branch.phoneHref}>{branch.phone}</a>
+            </div>
+          ))}
         </div>
 
         <div className="footer-contact">
-          <p>
-            <span className="footer-label">Order</span>
-            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
-          </p>
           <p>
             <span className="footer-label">WhatsApp</span>
             <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer">

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Camera, Share2, MessageCircle, MapPin, Phone, Mail } from 'lucide-react';
+import { Camera, Share2, MessageCircle, MapPin, Mail } from 'lucide-react';
 import './Footer.css';
 import Button from '../ui/Button';
+import { BRANCHES } from '../../data/locations';
 import logo from '../../assets/logo.png';
 import logoLight from '../../assets/logo-light.png';
 
@@ -39,9 +40,17 @@ const Footer = () => {
           <div className="footer-col contact-col">
             <h4 className="footer-heading">Contact Us</h4>
             <ul className="footer-contact">
-              <li className="flex items-center gap-sm"><MapPin size={18} className="text-primary" /> <span>110, Agura/Okeolokun Road, Gberigbe, Ikorodu, Lagos</span></li>
-              <li className="flex items-center gap-sm"><Phone size={18} className="text-primary" /> <span>09036152411</span></li>
-              <li className="flex items-center gap-sm"><MessageCircle size={18} className="text-primary" /> <span>07079322329</span></li>
+              {BRANCHES.map((branch) => (
+                <li className="flex gap-sm" key={branch.name}>
+                  <MapPin size={18} className="text-primary shrink-0" />
+                  <span>
+                    <strong>{branch.name}</strong><br />
+                    {branch.address}<br />
+                    {branch.phone}
+                  </span>
+                </li>
+              ))}
+              <li className="flex items-center gap-sm"><MessageCircle size={18} className="text-primary" /> <span>WhatsApp 07079322329</span></li>
               <li className="flex items-center gap-sm"><Mail size={18} className="text-primary" /> <span>hello@tominarestaurant.com</span></li>
             </ul>
           </div>

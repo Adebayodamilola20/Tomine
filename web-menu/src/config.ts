@@ -4,16 +4,16 @@
 export const MAIN_SITE_URL = 'https://tomine-mu.vercel.app/';
 
 export const CONTACT = {
-  address: '110, Agura/Okeolokun Road, Gberigbe, Ikorodu, Lagos',
-  phone: '09036152411',
-  phoneHref: 'tel:+2349036152411',
   /** Where the order buttons go. */
   whatsapp: 'https://wa.me/2349036152411',
-  /** Second WhatsApp line the restaurant also answers on. */
+  /** The WhatsApp line the restaurant gave for enquiries. */
   whatsappAlt: 'https://wa.me/2347079322329',
   whatsappAltLabel: '07079322329',
   email: 'hello@tominarestaurant.com',
 };
+
+/** Both branches, shared with the main site. */
+export { BRANCHES, type Branch } from '@tomine/data/locations';
 
 /**
  * A WhatsApp link that opens the chat with the order already typed out, so the
