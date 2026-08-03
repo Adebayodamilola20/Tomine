@@ -1,0 +1,19 @@
+# The CLI uploads from the repo root (the menu site reads ../src), so keep the
+# heavy local-only directories out of it. Without this the upload is ~343MB and
+# times out; with it, a few MB of source and photos.
+node_modules
+dist
+web-menu/dist
+
+.git
+.vercel
+.env*
+
+# Generated print assets, not part of either site
+qr
+
+# Raw menu photo originals (staging, not shipped)
+.menu-photos-raw
+
+*.log
+.DS_Store

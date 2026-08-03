@@ -25,3 +25,7 @@ dist-ssr
 
 # Raw menu photo originals (staging, not shipped)
 .menu-photos-raw/
+
+# Vercel CLI link state
+.vercel
+.env*
