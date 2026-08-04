@@ -21,6 +21,8 @@ import egusi from '../assets/menu/egusi.jpg';
 import panlaFish from '../assets/menu/panla-fish.jpg';
 import croakerFish from '../assets/menu/croaker-fish.jpg';
 import turkey from '../assets/menu/turkey.jpg';
+import cowLeg from '../assets/menu/cow-leg.jpg';
+import assortedMeat from '../assets/menu/assorted-meat.jpg';
 import boiledEgg from '../assets/menu/boiled-egg.jpg';
 
 import fanta from '../assets/menu/fanta.jpg';
@@ -91,6 +93,8 @@ export const MENU: MenuSection[] = [
       /* Photo pulled at the client's request — listed by name until a new one arrives. */
       { name: 'Roasted Chicken', price: '₦2,500' },
       { name: 'Turkey', price: '₦4,000', image: turkey },
+      { name: 'Cow Leg', price: '₦2,500', image: cowLeg },
+      { name: 'Assorted Meat', price: '₦1,000', image: assortedMeat },
       { name: 'Boiled Egg', price: '₦500', image: boiledEgg },
     ],
   },
