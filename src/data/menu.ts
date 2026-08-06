@@ -15,7 +15,11 @@ import friedRice from '../assets/menu/fried-rice.jpg';
 import whiteRiceBeans from '../assets/menu/white-rice-beans.jpg';
 import eba from '../assets/menu/eba.jpg';
 import poundedYam from '../assets/menu/pounded-yam.jpg';
+import poundedYamSoup from '../assets/menu/pounded-yam-soup.jpg';
 import semo from '../assets/menu/semo.jpg';
+import semoEfoRiro from '../assets/menu/semo-efo-riro.jpg';
+import semoEgusi from '../assets/menu/semo-egusi.jpg';
+import yamPottage from '../assets/menu/yam-pottage.jpg';
 import efoRiro from '../assets/menu/efo-riro.jpg';
 import egusi from '../assets/menu/egusi.jpg';
 import panlaFish from '../assets/menu/panla-fish.jpg';
@@ -85,11 +89,15 @@ export const MENU: MenuSection[] = [
       { name: 'White Rice & Beans', price: '₦1,000', image: whiteRiceBeans },
       { name: 'Eba', price: '₦1,000', image: eba },
       { name: 'Pounded Yam', price: '₦1,000', image: poundedYam },
+      { name: 'Pounded Yam with Soup', price: '₦2,500', image: poundedYamSoup },
       { name: 'Semo', price: '₦4,500', image: semo },
+      { name: 'Semo with Efo-Riro', price: '₦2,000', image: semoEfoRiro },
+      { name: 'Semo with Egusi Soup', price: '₦2,000', image: semoEgusi },
+      { name: 'Yam Pottage', price: '₦1,500', image: yamPottage },
       { name: 'Efo-Riro Soup', price: '₦1,000', image: efoRiro },
       { name: 'Egusi Soup', price: '₦1,000', image: egusi },
       { name: 'Panla Fish', price: '₦1,000', image: panlaFish },
-      { name: 'Croaker Fish', price: '₦3,500', image: croakerFish },
+      { name: 'Croaker Fish', price: '₦3,000', image: croakerFish },
       /* Photo pulled at the client's request — listed by name until a new one arrives. */
       { name: 'Roasted Chicken', price: '₦2,500' },
       { name: 'Turkey', price: '₦4,000', image: turkey },
