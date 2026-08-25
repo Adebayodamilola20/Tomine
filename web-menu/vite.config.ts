@@ -12,6 +12,10 @@ export default defineConfig({
     alias: {
       '@tomine': path.resolve(mainSite, 'src'),
     },
+    // Shared modules under @tomine sit outside this app, so a React import in
+    // one of them would otherwise resolve to the main site's own copy. Two
+    // Reacts means hooks blow up, so pin everything to this app's copy.
+    dedupe: ['react', 'react-dom'],
   },
   server: {
     fs: { allow: [mainSite] },
