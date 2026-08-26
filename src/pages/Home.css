@@ -49,29 +49,34 @@
 }
 
 /* Dark enough to hold white text over a bright plate, light enough that the
-   food still reads as the subject. Weighted to the left, where the name sits. */
+   food still reads as the subject. */
 .hero-scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.3) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 35%, rgba(0, 0, 0, 0.55) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 70%);
 }
 
+/* Centred stack: dish name, then Order Now directly beneath it. */
 .hero-container {
   position: relative;
   z-index: 1;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2.25rem;
   padding-top: 80px; /* clears the fixed navbar */
   padding-bottom: 80px;
 }
 
-/* Dish name — sits to the side, per the brief. Capped well short of halfway so
-   a three-line name never runs into the centred Order Now button. */
+/* Wide enough that a name like "Jollof Rice & Chicken" holds one line on a
+   desktop screen instead of stacking word by word. */
 .hero-dish {
-  max-width: 36%;
+  max-width: min(94%, 1100px);
 }
 
 .hero-eyebrow {
@@ -88,25 +93,20 @@
 .hero-dish-name {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(2.5rem, 4.4vw, 4.25rem);
-  line-height: 1;
+  font-size: clamp(2.25rem, 5.6vw, 5.25rem);
+  line-height: 1.02;
   letter-spacing: -0.03em;
   color: #fff;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
   margin: 0;
 }
 
-/* Order Now — centred in the middle of the hero, per the brief */
+/* Order Now — directly under the dish name */
 .hero-cta {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  text-align: center;
 }
 
 .hero-order-btn {
@@ -528,32 +528,9 @@
 }
 
 
-/* Narrow enough that a centred button would collide with the dish name, so the
-   two stack into one centred column instead. */
 @media (max-width: 900px) {
-  .hero-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 2.5rem;
-  }
-
+  .hero-container { gap: 1.75rem; }
   .hero-dish { max-width: 100%; }
-
-  .hero-cta {
-    position: static;
-    transform: none;
-  }
-
-  .hero-scrim {
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(0, 0, 0, 0.35) 40%,
-      rgba(0, 0, 0, 0.65) 100%
-    );
-  }
 }
 
 @media (max-width: 768px) {
