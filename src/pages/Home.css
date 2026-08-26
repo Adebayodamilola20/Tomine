@@ -22,101 +22,139 @@
 .icon-btn { display: inline-flex; align-items: center; gap: 0.5rem; }
 .slide-link:hover { text-decoration: underline; }
 
-/* 1. Hero Section — light split layout */
+/* 1. Hero Section — full-bleed dish slideshow */
 .hero-section {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: var(--color-background);
-  padding: 120px 0 60px;
-}
-
-.hero-container {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-}
-
-.hero-content {
-  max-width: 640px;
-}
-
-.hero-badge {
-  display: inline-block;
-  background-color: var(--color-primary);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-full);
-  margin-bottom: 1.5rem;
-}
-
-.hero-title {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(3rem, 6.5vw, 5.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  color: var(--color-text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.hero-desc {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  max-width: 480px;
-  margin-bottom: 2.5rem;
-}
-
-/* Photo card with green offset backing */
-.hero-visual {
-  position: relative;
-  z-index: 0; /* own stacking context so the behind-photo can't fall under the section bg */
-  display: flex;
-  justify-content: center;
-}
-
-.hero-photo-card {
-  position: relative;
-  width: min(380px, 100%);
-  aspect-ratio: 3 / 4;
-  border-radius: 24px;
   overflow: hidden;
-  background-color: var(--color-surface-secondary);
-  box-shadow: var(--shadow-md);
+  background-color: #14100e; /* shows through before the first photo decodes */
 }
 
-.hero-image {
+.hero-stage {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  will-change: opacity, transform;
 }
 
-/* next photo peeking out behind the current one, slanted */
-.hero-photo-behind {
+/* Dark enough to hold white text over a bright plate, light enough that the
+   food still reads as the subject. Weighted to the left, where the name sits. */
+.hero-scrim {
   position: absolute;
-  top: 50%;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.3) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 35%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px; /* clears the fixed navbar */
+  padding-bottom: 80px;
+}
+
+/* Dish name — sits to the side, per the brief. Capped well short of halfway so
+   a three-line name never runs into the centred Order Now button. */
+.hero-dish {
+  max-width: 36%;
+}
+
+.hero-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary-light);
+  margin-bottom: 0.75rem;
+}
+
+.hero-dish-name {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 4.4vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  margin: 0;
+}
+
+/* Order Now — centred in the middle of the hero, per the brief */
+.hero-cta {
+  position: absolute;
   left: 50%;
-  width: min(380px, 100%);
-  aspect-ratio: 3 / 4;
-  height: auto;
-  object-fit: cover;
-  border-radius: 24px;
-  transform: translate(-50%, -50%) rotate(-7deg) translate(-10px, 12px);
-  filter: brightness(0.8);
-  box-shadow: var(--shadow-md);
-  z-index: -1;
-  transition: transform var(--transition-slow);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.hero-order-btn {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero-menu-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hero-menu-link:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.hero-dots {
+  position: absolute;
+  z-index: 2;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background var(--transition-fast), width var(--transition-fast);
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-dot.is-active {
+  width: 26px;
+  background: var(--color-primary);
 }
 
 /* Curtain scroll — each section rises up over the pinned one before it */
@@ -490,18 +528,37 @@
 }
 
 
+/* Narrow enough that a centred button would collide with the dish name, so the
+   two stack into one centred column instead. */
 @media (max-width: 900px) {
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
   }
-  .hero-visual { margin-top: 1rem; }
+
+  .hero-dish { max-width: 100%; }
+
+  .hero-cta {
+    position: static;
+    transform: none;
+  }
+
+  .hero-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+  }
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding: 110px 0 50px; min-height: auto; }
-  .hero-title { font-size: clamp(2.5rem, 11vw, 3.25rem); }
-  .hero-photo-card, .hero-photo-behind { width: min(320px, 90%); }
+  .hero-dish-name { font-size: clamp(2.25rem, 11vw, 3.25rem); }
+  .hero-dots { bottom: 20px; }
   .grid-cols-2 { grid-template-columns: 1fr; }
   .about-image { height: 400px; }
   .experience-badge { right: 20px; bottom: 20px; }
