@@ -3,60 +3,73 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Leaf, Award, Clock, ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { MENU } from '../data/menu';
 import './Home.css';
+
+import building1 from '../assets/building-1.jpg';
+import building2 from '../assets/building-2.jpg';
 
 import img1 from '../assets/cto1.jpg';
 import img2 from '../assets/cto2.jpg';
 import img3 from '../assets/cto3.jpg';
 import img4 from '../assets/cto4.jpg';
-import img5 from '../assets/cto5.jpg';
-import img6 from '../assets/ct.jpg';
 
 import path1 from '../assets/path1.jpg';
-import path2 from '../assets/path2.jpg';
-import path3 from '../assets/path3.jpg';
 import path4 from '../assets/path4.jpg';
 import path5 from '../assets/path5.jpg';
+import path6 from '../assets/path6.jpg';
 
-const HERO_IMAGES = [img1, img2, img3, img4, img5, img6];
+const WHATSAPP_ORDER = 'https://wa.me/2349036152411';
 
-const MOCK_DISHES = [
-  {
-    id: '1',
-    image: path1,
-    name: 'Jollof Rice',
-    description: 'Smoky, party-style jollof rice cooked in a rich tomato and pepper base.',
-    price: '₦ 1,000'
-  },
-  {
-    id: '2',
-    image: path2,
-    name: 'Egusi Soup',
-    description: 'Melon-seed soup simmered with tender leafy greens — perfect with any swallow.',
-    price: '₦ 1,000'
-  },
-  {
-    id: '3',
-    image: path3,
-    name: 'Croaker Fish',
-    description: 'Fresh croaker fish in a peppery sauce, grilled and seasoned to order.',
-    price: '₦ 3,500'
-  },
-  {
-    id: '4',
-    image: path4,
-    name: 'Chicken Pie',
-    description: 'Golden, flaky pastry filled with seasoned chicken and vegetables, baked fresh daily.',
-    price: '₦ 1,000'
-  },
-  {
-    id: '5',
-    image: path5,
-    name: 'Parfait',
-    description: 'Layered yoghurt parfait with fresh fruit and crunchy granola.',
-    price: '₦ 3,000'
-  }
+/**
+ * The hero slideshow. Names describe what is actually in each photo — these are
+ * the kitchen's own shots, so the plate on screen has to match the caption
+ * beside it.
+ */
+const HERO_SLIDES = [
+  { image: path4, name: 'Jollof Rice & Chicken' },
+  { image: path6, name: 'Efo Riro & Fish' },
+  { image: path5, name: 'Tomine Special Bread' },
+  { image: path1, name: 'The Takeaway Pack' },
 ];
+
+const SLIDE_HOLD_MS = 6000;
+
+const BUILDING_SHOTS = [
+  { image: building1, alt: 'The Tomine Bakery & Restaurant shopfront' },
+  { image: building2, alt: 'Tomine Bakery & Restaurant seen from the forecourt' },
+];
+
+const BUILDING_HOLD_MS = 5000;
+
+/**
+ * The strip pulls its photos and captions straight out of the menu, so a dish
+ * can never end up under the wrong name here — correct it once in menu.ts and
+ * this follows. Anything without a photo yet is simply skipped.
+ */
+const SHOWCASE_NAMES = [
+  'Jollof Rice',
+  'Efo-Riro Soup',
+  'Pounded Yam with Soup',
+  'Croaker Fish',
+  'Fried Rice',
+  'Egusi Soup',
+  'Semo with Egusi Soup',
+  'Meat Pie',
+  'Yam Pottage',
+  'Assorted Meat',
+  'Chicken Pie',
+  /* Parfait is left out on purpose: its photo is a cut-out saved with the
+     transparency checkerboard baked in, so it needs replacing first. */
+  'Semo with Efo-Riro',
+];
+
+type Showcase = { name: string; image: string };
+
+const SHOWCASE: Showcase[] = SHOWCASE_NAMES.flatMap((name) => {
+  const item = MENU.flatMap((s) => s.items).find((i) => i.name === name);
+  return item?.image ? [{ name: item.name, image: item.image }] : [];
+});
 
 const GALLERY_SHOTS = [
   { image: img1, label: 'The dining room' },
@@ -68,73 +81,163 @@ const GALLERY_SHOTS = [
 // Testimonials removed to fix unused variable warning
 
 const Home = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5000); // Change image every 5 seconds
-    return () => clearInterval(interval);
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setReducedMotion(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
   }, []);
+
+  /* Keyed on slideIndex so picking a dot restarts the countdown — otherwise a
+     click could be swept away a moment later by a timer already mid-flight. */
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length),
+      SLIDE_HOLD_MS
+    );
+    return () => clearTimeout(timer);
+  }, [slideIndex]);
+
+  /* Only the next photo is fetched ahead of time — pulling all five up front
+     would cost more than the whole rest of the page. */
+  useEffect(() => {
+    const next = new Image();
+    next.src = HERO_SLIDES[(slideIndex + 1) % HERO_SLIDES.length].image;
+  }, [slideIndex]);
+
+  const slide = HERO_SLIDES[slideIndex];
+
+  const [buildingIndex, setBuildingIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setBuildingIndex((prev) => (prev + 1) % BUILDING_SHOTS.length),
+      BUILDING_HOLD_MS
+    );
+    return () => clearTimeout(timer);
+  }, [buildingIndex]);
 
   return (
     <div className="home-page">
-      {/* 1. Hero Section */}
-      <section className="hero-section">
-        <div className="container hero-container">
-          <motion.div
-            className="hero-content"
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          >
-            <span className="hero-badge">Lagos, Nigeria &middot; Open 7 Days a Week</span>
-            <h1 className="hero-title">Experience taste like <span className="highlight-mark">never before.</span></h1>
-            <p className="hero-desc">Discover a harmonious blend of traditional flavors and modern culinary artistry in the heart of the city.</p>
-            <div className="hero-actions flex gap-md items-center">
-              <Link to="/order">
-                <Button variant="primary" size="lg" className="icon-btn">Book a Table <ArrowRight size={18} /></Button>
-              </Link>
-              <Link to="/menu">
-                <Button variant="ghost" size="lg">See the Menu</Button>
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="hero-visual"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-          >
-            <img
-              src={HERO_IMAGES[(currentImageIndex + 1) % HERO_IMAGES.length]}
-              alt=""
-              aria-hidden="true"
-              className="hero-photo-behind"
+      {/* 1. Hero Section — full-bleed dish slideshow */}
+      <section className="hero-section" aria-label="Featured dishes">
+        <div className="hero-stage">
+          {/* Crossfade: outgoing and incoming photos overlap, so the eye never
+              lands on an empty frame between the two. */}
+          <AnimatePresence initial={false}>
+            <motion.img
+              key={slideIndex}
+              src={slide.image}
+              alt={slide.name}
+              className="hero-slide"
+              fetchPriority={slideIndex === 0 ? 'high' : 'auto'}
+              initial={{ opacity: 0, scale: reducedMotion ? 1 : 1.03 }}
+              animate={{ opacity: 1, scale: reducedMotion ? 1 : 1.1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                opacity: { duration: reducedMotion ? 0.4 : 1.8, ease: 'easeInOut' },
+                scale: { duration: 9, ease: 'linear' },
+              }}
             />
-            <div className="hero-photo-card">
-              <AnimatePresence>
-                <motion.img
-                  key={currentImageIndex}
-                  src={HERO_IMAGES[currentImageIndex]}
-                  alt="Restaurant Interior"
-                  className="hero-image"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1, scale: 1.05 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    opacity: { duration: 1.5, ease: "easeInOut" },
-                    scale: { duration: 6, ease: "linear" }
-                  }}
-                />
-              </AnimatePresence>
-            </div>
-          </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Darkens the photo just enough to hold white text over any dish. */}
+        <div className="hero-scrim" aria-hidden="true" />
+
+        <div className="container hero-container">
+          <div className="hero-dish">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slideIndex}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reducedMotion ? 0 : -12 }}
+                transition={{ duration: reducedMotion ? 0.25 : 0.6, ease: 'easeOut' }}
+              >
+                <span className="hero-eyebrow">Now serving</span>
+                <h1 className="hero-dish-name">{slide.name}</h1>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="hero-cta">
+            <a href={WHATSAPP_ORDER} target="_blank" rel="noopener noreferrer">
+              <Button variant="primary" size="lg" className="icon-btn hero-order-btn">
+                Order Now <ArrowRight size={18} />
+              </Button>
+            </a>
+            <Link to="/menu" className="hero-menu-link">
+              See the full menu
+            </Link>
+          </div>
+        </div>
+
+        <div className="hero-dots" role="tablist" aria-label="Choose a dish">
+          {HERO_SLIDES.map((s, i) => (
+            <button
+              key={s.name}
+              type="button"
+              role="tab"
+              aria-label={s.name}
+              aria-selected={i === slideIndex}
+              className={`hero-dot ${i === slideIndex ? 'is-active' : ''}`}
+              onClick={() => setSlideIndex(i)}
+            />
+          ))}
         </div>
       </section>
 
-      {/* 2. About Preview */}
+      {/* 2. Dish strip — half-height, drifting left to right */}
+      <section className="dish-strip" aria-label="Dishes from our menu">
+        <div className="dish-marquee">
+          {/* The list is laid down twice: the track slides exactly one copy's
+              width, so the loop point lands on an identical frame. */}
+          <div className="dish-track">
+            {[...SHOWCASE, ...SHOWCASE].map((dish, i) => (
+              <figure className="dish-cell" key={`${dish.name}-${i}`} aria-hidden={i >= SHOWCASE.length}>
+                <img src={dish.image} alt={i < SHOWCASE.length ? dish.name : ''} loading="lazy" />
+                <figcaption>{dish.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. The restaurant — full section, photos sliding left to right */}
+      <section className="branch-section" aria-label="Our restaurant">
+        <AnimatePresence initial={false}>
+          <motion.img
+            key={buildingIndex}
+            src={BUILDING_SHOTS[buildingIndex].image}
+            alt={BUILDING_SHOTS[buildingIndex].alt}
+            className="branch-photo"
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 1.1, ease: [0.65, 0, 0.35, 1] }}
+          />
+        </AnimatePresence>
+
+        <div className="branch-dots">
+          {BUILDING_SHOTS.map((shot, i) => (
+            <button
+              key={shot.alt}
+              type="button"
+              aria-label={shot.alt}
+              aria-current={i === buildingIndex}
+              className={`branch-dot ${i === buildingIndex ? 'is-active' : ''}`}
+              onClick={() => setBuildingIndex(i)}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* 4. About Preview */}
       <section className="section about-preview">
         <div className="container">
           <div className="grid grid-cols-2 gap-xl items-center">
@@ -182,46 +285,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. Featured Dishes */}
-      <section className="section featured-section bg-secondary">
-        <div className="container">
-          <div className="section-header flex justify-between items-center mb-10">
-            <div>
-              <h4 className="section-subtitle">Customer Favourites</h4>
-              <h2 className="section-title">Featured Delights</h2>
-            </div>
-            <Link to="/menu" className="desktop-only text-primary flex items-center gap-sm slide-link">
-              View Full Menu <ArrowRight size={18} />
-            </Link>
-          </div>
-          <div className="featured-mosaic">
-            {MOCK_DISHES.map((dish, i) => (
-              <motion.div
-                key={dish.id}
-                className={`mosaic-card ${i === 0 ? 'mosaic-large' : ''}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-              >
-                <img src={dish.image} alt={dish.name} loading="lazy" />
-                <div className="mosaic-info">
-                  <h3 className="mosaic-name">{dish.name}</h3>
-                  <p className="mosaic-desc">{dish.description}</p>
-                  <span className="mosaic-price">{dish.price}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <div className="mobile-only mt-6 text-center">
-            <Link to="/menu">
-              <Button variant="outline">View Full Menu</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Why Choose Us */}
+      {/* 5. Why Choose Us */}
       <section className="section why-us">
         <div className="container">
           <div className="text-center mb-10">

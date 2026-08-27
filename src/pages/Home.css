@@ -22,101 +22,246 @@
 .icon-btn { display: inline-flex; align-items: center; gap: 0.5rem; }
 .slide-link:hover { text-decoration: underline; }
 
-/* 1. Hero Section — light split layout */
+/* 1. Hero Section — full-bleed dish slideshow */
 .hero-section {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: var(--color-background);
-  padding: 120px 0 60px;
+  overflow: hidden;
+  background-color: #14100e; /* shows through before the first photo decodes */
 }
 
+.hero-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: opacity, transform;
+}
+
+/* Dark enough to hold white text over a bright plate, light enough that the
+   food still reads as the subject. */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 70%);
+}
+
+/* Centred stack: dish name, then Order Now directly beneath it. */
 .hero-container {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2.25rem;
+  padding-top: 80px; /* clears the fixed navbar */
+  padding-bottom: 80px;
 }
 
-.hero-content {
-  max-width: 640px;
+/* Wide enough that a name like "Jollof Rice & Chicken" holds one line on a
+   desktop screen instead of stacking word by word. */
+.hero-dish {
+  max-width: min(94%, 1100px);
 }
 
-.hero-badge {
-  display: inline-block;
-  background-color: var(--color-primary);
-  color: #fff;
+.hero-eyebrow {
+  display: block;
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-full);
-  margin-bottom: 1.5rem;
+  letter-spacing: 3px;
+  color: var(--color-primary-light);
+  margin-bottom: 0.75rem;
 }
 
-.hero-title {
+.hero-dish-name {
   font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(3rem, 6.5vw, 5.25rem);
+  font-weight: 900;
+  font-size: clamp(2.25rem, 5.6vw, 5.25rem);
   line-height: 1.02;
   letter-spacing: -0.03em;
-  color: var(--color-text-primary);
-  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  margin: 0;
 }
 
-.hero-desc {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  max-width: 480px;
-  margin-bottom: 2.5rem;
-}
-
-/* Photo card with green offset backing */
-.hero-visual {
-  position: relative;
-  z-index: 0; /* own stacking context so the behind-photo can't fall under the section bg */
+/* Order Now — directly under the dish name */
+.hero-cta {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.hero-photo-card {
-  position: relative;
-  width: min(380px, 100%);
-  aspect-ratio: 3 / 4;
-  border-radius: 24px;
-  overflow: hidden;
-  background-color: var(--color-surface-secondary);
-  box-shadow: var(--shadow-md);
+.hero-order-btn {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-.hero-image {
+.hero-menu-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hero-menu-link:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.hero-dots {
   position: absolute;
-  top: 0;
-  left: 0;
+  z-index: 2;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background var(--transition-fast), width var(--transition-fast);
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-dot.is-active {
+  width: 26px;
+  background: var(--color-primary);
+}
+
+/* 2. Dish strip — half-height band of dishes drifting left to right */
+.dish-strip {
+  padding: 3.5rem 0;
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.dish-marquee {
+  overflow: hidden;
+}
+
+.dish-track {
+  display: flex;
+  width: max-content;
+  animation: dish-drift 60s linear infinite;
+}
+
+/* The spacing lives on the cell rather than as a track `gap`, so two copies of
+   the list are exactly twice one copy — a gap would add an extra sliver and
+   the loop would visibly jump. */
+.dish-cell {
+  flex: 0 0 auto;
+  width: clamp(230px, 24vw, 330px);
+  margin: 0 6px;
+}
+
+.dish-cell img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: var(--color-surface-secondary);
+}
+
+.dish-cell figcaption {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+@keyframes dish-drift {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+/* Deliberately keeps running under the cursor — it should never stall. */
+
+/* 3. The restaurant — full-bleed building shots sliding left to right */
+.branch-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #14100e;
+}
+
+.branch-photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-/* next photo peeking out behind the current one, slanted */
-.hero-photo-behind {
+.branch-dots {
   position: absolute;
-  top: 50%;
+  z-index: 2;
+  bottom: 32px;
   left: 50%;
-  width: min(380px, 100%);
-  aspect-ratio: 3 / 4;
-  height: auto;
-  object-fit: cover;
-  border-radius: 24px;
-  transform: translate(-50%, -50%) rotate(-7deg) translate(-10px, 12px);
-  filter: brightness(0.8);
-  box-shadow: var(--shadow-md);
-  z-index: -1;
-  transition: transform var(--transition-slow);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.branch-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background var(--transition-fast), width var(--transition-fast);
+}
+
+.branch-dot:hover { background: rgba(255, 255, 255, 0.75); }
+
+.branch-dot.is-active {
+  width: 26px;
+  background: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dish-track { animation: none; transform: none; }
+  .dish-marquee { overflow-x: auto; }
+}
+
+@media (max-width: 768px) {
+  .dish-strip { padding: 2.5rem 0; }
+  .dish-cell { width: clamp(190px, 62vw, 260px); }
+  .branch-section { min-height: 70vh; }
+  .branch-dots { bottom: 20px; }
 }
 
 /* Curtain scroll — each section rises up over the pinned one before it */
@@ -491,17 +636,13 @@
 
 
 @media (max-width: 900px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-  }
-  .hero-visual { margin-top: 1rem; }
+  .hero-container { gap: 1.75rem; }
+  .hero-dish { max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding: 110px 0 50px; min-height: auto; }
-  .hero-title { font-size: clamp(2.5rem, 11vw, 3.25rem); }
-  .hero-photo-card, .hero-photo-behind { width: min(320px, 90%); }
+  .hero-dish-name { font-size: clamp(2.25rem, 11vw, 3.25rem); }
+  .hero-dots { bottom: 20px; }
   .grid-cols-2 { grid-template-columns: 1fr; }
   .about-image { height: 400px; }
   .experience-badge { right: 20px; bottom: 20px; }
