@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Send } from 'lucide-react';
+import { MapPin, Mail, Send, Navigation } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { BRANCHES } from '../data/locations';
 import './OrderContact.css';
@@ -51,13 +51,9 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
-              <div className="contact-info-item flex gap-md items-center mt-6">
-                <div className="icon-circle border-primary text-primary"><Phone size={24} /></div>
-                <div>
-                  <h4 className="font-heading font-semibold text-xl">WhatsApp</h4>
-                  <p className="text-secondary">07079322329</p>
-                </div>
-              </div>
+              {/* The 07079322329 line that used to sit here on its own is the
+                  Agura Road branch's number, so it now appears under that
+                  branch instead of twice under two different labels. */}
               <div className="contact-info-item flex gap-md items-center mt-6">
                 <div className="icon-circle border-primary text-primary"><Mail size={24} /></div>
                 <div>
@@ -67,45 +63,51 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="map-container mt-12 rounded-lg overflow-hidden shadow-md">
-              {/* Fake Google Map Placeholder that looks premium */}
-              <div className="mock-map flex items-center justify-center bg-secondary w-full h-64 relative">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" alt="Map outline" className="w-full h-full object-cover opacity-30 grayscale" loading="lazy" decoding="async" />
-                </div>
-                <div className="relative z-10 flex-col items-center justify-center text-center">
-                  <MapPin size={40} className="text-primary mb-2 mx-auto" />
-                  <span className="font-heading font-bold text-lg">TOMINE LOCATION</span>
-                </div>
-              </div>
+            {/* Was a stock photo of an antique world map with "TOMINE LOCATION"
+                printed over it. These open the real address in Google Maps. */}
+            <div className="directions-list">
+              {BRANCHES.map((branch) => (
+                <a
+                  key={branch.name}
+                  className="directions-link"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    `${branch.name}, ${branch.address}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Navigation size={20} />
+                  <span>Get directions to {branch.name}</span>
+                </a>
+              ))}
             </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div 
-            className="glass-panel p-8 md:p-12 rounded-xl"
+            className="glass-panel contact-form-panel"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-heading mb-6">Send a Message</h3>
-            <form className="flex-col gap-md" onSubmit={(e) => e.preventDefault()}>
-              <div className="form-group mb-6">
-                <label className="form-label block mb-2">Full Name</label>
-                <input type="text" className="form-input w-full p-4" placeholder="Your Name" required />
+            <h3 className="contact-form-title">Send a Message</h3>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className="form-group">
+                <label className="form-label" htmlFor="cf-name">Full Name</label>
+                <input id="cf-name" type="text" className="form-input" placeholder="Your Name" required />
               </div>
-              <div className="form-group mb-6">
-                <label className="form-label block mb-2">Email Address</label>
-                <input type="email" className="form-input w-full p-4" placeholder="your@email.com" required />
+              <div className="form-group">
+                <label className="form-label" htmlFor="cf-email">Email Address</label>
+                <input id="cf-email" type="email" className="form-input" placeholder="your@email.com" required />
               </div>
-              <div className="form-group mb-6">
-                <label className="form-label block mb-2">Subject</label>
-                <input type="text" className="form-input w-full p-4" placeholder="How can we help?" required />
+              <div className="form-group">
+                <label className="form-label" htmlFor="cf-subject">Subject</label>
+                <input id="cf-subject" type="text" className="form-input" placeholder="How can we help?" required />
               </div>
-              <div className="form-group mb-8">
-                <label className="form-label block mb-2">Message</label>
-                <textarea className="form-input w-full p-4 h-32 resize-none" placeholder="Write your message here..." required></textarea>
+              <div className="form-group">
+                <label className="form-label" htmlFor="cf-message">Message</label>
+                <textarea id="cf-message" className="form-input" placeholder="Write your message here..." required></textarea>
               </div>
               <Button type="submit" size="lg" fullWidth className="icon-btn justify-center">
                 Send Message <Send size={18} />

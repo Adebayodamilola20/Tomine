@@ -1,0 +1,257 @@
+/* Shared shell for the pages that hang off the navbar categories:
+   Our Team, FAQ, the three service pages and the Outlet Locator. */
+
+.info-page {
+  padding-bottom: 6rem;
+}
+
+.info-hero {
+  position: relative;
+  min-height: 46vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 0 60px;
+  background-color: #14100e;
+  overflow: hidden;
+}
+
+.info-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.info-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.info-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary-light);
+  margin-bottom: 0.75rem;
+}
+
+.info-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0;
+}
+
+.info-lede {
+  max-width: 640px;
+  margin: 1.25rem auto 0;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.info-body {
+  max-width: 820px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.info-body p {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.info-h2 {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 2.5rem 0 1rem;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.info-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.7rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.info-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+.info-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---- Outlet locator ---- */
+
+.outlet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.outlet-card {
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.outlet-name {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.outlet-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.65rem;
+  line-height: 1.55;
+}
+
+.outlet-row svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--color-primary);
+}
+
+.outlet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+/* ---- FAQ ---- */
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.35rem 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.faq-q svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: transform var(--transition-fast);
+}
+
+.faq-q svg.is-open {
+  transform: rotate(180deg);
+}
+
+.faq-a {
+  overflow: hidden;
+}
+
+.faq-a p {
+  padding-bottom: 1.35rem;
+  margin: 0;
+}
+
+/* ---- Team ---- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.75rem;
+  margin-top: 1rem;
+}
+
+.team-card {
+  text-align: center;
+}
+
+.team-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-secondary);
+}
+
+.team-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.team-role {
+  color: var(--color-primary);
+  font-size: 0.92rem;
+  margin-top: 0.15rem;
+}
+
+/* Shown while the real team photos and names are still being gathered. */
+.team-pending {
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-secondary);
+}
+
+@media (max-width: 768px) {
+  .info-hero { min-height: 38vh; padding: 120px 0 48px; }
+  .info-body { padding-top: 2.5rem; }
+  .outlet-card { padding: 1.5rem; }
+}

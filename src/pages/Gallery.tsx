@@ -3,15 +3,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
 import './Gallery.css';
 
+import building1 from '../assets/building-1.jpg';
+import building2 from '../assets/building-2.jpg';
+import shot1 from '../assets/path1.jpg';
+import shot2 from '../assets/path2.jpg';
+import shot3 from '../assets/path3.jpg';
+import shot4 from '../assets/path4.jpg';
+import shot5 from '../assets/path5.jpg';
+import shot6 from '../assets/path6.jpg';
+import room1 from '../assets/cto1.jpg';
+import room2 from '../assets/cto2.jpg';
+import room3 from '../assets/cto3.jpg';
+import room4 from '../assets/cto4.jpg';
+
+/**
+ * Tomine's own photographs. This page used to be eight Unsplash hotlinks with
+ * no connection to the restaurant — and one of them had since 404'd, leaving a
+ * broken tile on a page reachable straight from the navbar.
+ */
 const GALLERY_IMAGES = [
-  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1560624052-449f5ddf0c31?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1466978913421-bac2e5e79ed4?q=80&w=1200&auto=format&fit=crop'
+  { src: building1, alt: 'The Tomine Bakery & Restaurant shopfront' },
+  { src: shot4, alt: 'Jollof rice with chicken and fried plantain' },
+  { src: shot6, alt: 'Efo riro with fish and meat' },
+  { src: shot5, alt: 'Tomine Special Bread with fried plantain' },
+  { src: building2, alt: 'Tomine seen from the forecourt' },
+  { src: shot1, alt: 'A takeaway pack of rice, soup and chicken' },
+  { src: shot2, alt: 'Shawarma wraps with grilled chicken' },
+  { src: shot3, alt: 'Celebration cakes on the counter' },
+  { src: room1, alt: 'Inside the dining room' },
+  { src: room2, alt: 'Seating at Tomine' },
+  { src: room3, alt: 'The counter' },
+  { src: room4, alt: 'Plated dishes' },
 ];
 
 const Gallery = () => {
@@ -39,16 +61,16 @@ const Gallery = () => {
       <section className="container mt-12">
         <div className="full-gallery-grid">
           {GALLERY_IMAGES.map((img, idx) => (
-            <motion.div 
-              key={idx}
+            <motion.div
+              key={img.src}
               className="gallery-grid-item"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
-              onClick={() => setSelectedImage(img)}
+              onClick={() => setSelectedImage(img.src)}
             >
-              <img src={img} alt={`Gallery item ${idx + 1}`} loading="lazy" />
+              <img src={img.src} alt={img.alt} loading="lazy" />
               <div className="gallery-grid-overlay">
                 <ZoomIn size={40} className="text-white" />
               </div>

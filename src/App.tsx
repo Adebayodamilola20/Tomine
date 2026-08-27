@@ -15,6 +15,12 @@ const Menu = lazy(() => import('./pages/Menu'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Order = lazy(() => import('./pages/Order'));
 const Contact = lazy(() => import('./pages/Contact'));
+const OurTeam = lazy(() => import('./pages/OurTeam'));
+const Faq = lazy(() => import('./pages/Faq'));
+const CorporateCatering = lazy(() => import('./pages/CorporateCatering'));
+const OutdoorCatering = lazy(() => import('./pages/OutdoorCatering'));
+const HallReservation = lazy(() => import('./pages/HallReservation'));
+const OutletLocator = lazy(() => import('./pages/OutletLocator'));
 
 /**
  * The intro is a first-impression flourish, not a toll gate. Once per browser
@@ -66,6 +72,12 @@ function App() {
               <Route path="gallery" element={<Gallery />} />
               <Route path="order" element={<Order />} />
               <Route path="contact" element={<Contact />} />
+              <Route path="our-team" element={<OurTeam />} />
+              <Route path="faq" element={<Faq />} />
+              <Route path="corporate-catering" element={<CorporateCatering />} />
+              <Route path="outdoor-catering" element={<OutdoorCatering />} />
+              <Route path="hall-reservation" element={<HallReservation />} />
+              <Route path="outlet-locator" element={<OutletLocator />} />
             </Route>
           </Routes>
         </Suspense>

@@ -205,9 +205,7 @@
   to { transform: translate3d(0, 0, 0); }
 }
 
-.dish-marquee:hover .dish-track {
-  animation-play-state: paused;
-}
+/* Deliberately keeps running under the cursor — it should never stall. */
 
 /* 3. The restaurant — full-bleed building shots sliding left to right */
 .branch-section {
