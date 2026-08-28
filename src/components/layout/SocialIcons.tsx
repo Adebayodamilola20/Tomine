@@ -28,25 +28,18 @@ const Glyph = ({ name, size }: { name: string; size: number }) => (
 
 const SocialIcons = ({ size = 18, className = '' }: { size?: number; className?: string }) => (
   <div className={`social-row ${className}`}>
-    {SOCIALS.map((s) =>
-      s.url ? (
-        <a
-          key={s.name}
-          href={s.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="social-btn"
-          aria-label={`Tomine on ${s.name}`}
-        >
-          <Glyph name={s.name} size={size} />
-        </a>
-      ) : (
-        /* No handle supplied yet, so it is shown but deliberately not a link. */
-        <span key={s.name} className="social-btn is-placeholder" title={`${s.name} — link coming soon`}>
-          <Glyph name={s.name} size={size} />
-        </span>
-      )
-    )}
+    {SOCIALS.map((s) => (
+      <a
+        key={s.name}
+        href={s.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-btn"
+        aria-label={`Tomine on ${s.name}`}
+      >
+        <Glyph name={s.name} size={size} />
+      </a>
+    ))}
   </div>
 );
 

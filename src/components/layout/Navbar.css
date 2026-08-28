@@ -164,22 +164,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  /* 40px keeps the tap target at the accessible minimum on a phone; the icon
+     inside stays small. */
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-full);
   color: var(--color-text-secondary);
+  cursor: pointer;
   transition: color var(--transition-fast), background var(--transition-fast);
 }
 
-a.social-btn:hover {
+.social-btn:hover,
+.social-btn:focus-visible {
   color: var(--color-primary);
   background: var(--color-surface-secondary);
-}
-
-/* Waiting on a handle — visibly present but not clickable. */
-.social-btn.is-placeholder {
-  opacity: 0.45;
-  cursor: default;
 }
 
 .nav-link {
@@ -309,4 +307,28 @@ a.social-btn:hover {
 @media (max-width: 768px) {
   .desktop-only { display: none !important; }
   .mobile-only { display: flex !important; }
+}
+
+/* Five categories, three social icons and the Order button do not fit in one
+   bar on a tablet — below this the links wrap onto three lines and the button
+   runs off the edge. So the navbar alone collapses to the hamburger earlier
+   than the site-wide 768px, without disturbing other components. */
+@media (max-width: 1080px) {
+  .navbar-links.desktop-only,
+  .navbar-actions.desktop-only {
+    display: none !important;
+  }
+
+  .mobile-toggle.mobile-only {
+    display: flex !important;
+  }
+}
+
+/* Tighten it just above that, so the bar is never crowded right up to the
+   breakpoint. */
+@media (min-width: 1081px) and (max-width: 1300px) {
+  .navbar-links { gap: 1.35rem; }
+  .nav-link { font-size: 0.9rem; }
+  .navbar-actions { gap: 0.75rem; }
+  .social-row { gap: 0.25rem; }
 }
