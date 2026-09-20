@@ -1,24 +1,18 @@
 import { useEffect } from 'react';
 
-/* The flag itself lives in data/siteLock.ts, which holds no React, so the menu
-   site can read it across the project boundary without dragging a second copy
-   of React in behind it. Re-exported here so the main site has one import. */
-export { SITE_LOCKED } from './data/siteLock';
-
 /**
- * Both sites style h1/h2 globally, and a rule that targets the element beats
- * anything inherited from a parent — so the font has to be set on each node
- * here or the 404 comes out in the restaurant's serif and looks designed.
+ * The menu site's own copy of the 404.
+ *
+ * It is duplicated rather than imported from the main site on purpose: this is
+ * a separate Vite project, and pulling a React component across the project
+ * boundary means two copies of React in one bundle. The shared piece is the
+ * SITE_LOCKED flag in data/siteLock.ts, which is plain TypeScript and travels
+ * safely. Keep the markup here in step with src/gate.tsx if it ever changes.
  */
 const SYSTEM_FONT =
   'system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"';
 
-/**
- * Deliberately plain. This copies the stock hosting 404 — system font, no
- * colour, no logo — because anything branded would read as "their site is
- * broken" instead of "this address does not exist".
- */
-export function NotFound() {
+export default function NotFound() {
   useEffect(() => {
     document.title = '404: This page could not be found.';
 

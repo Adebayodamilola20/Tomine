@@ -2,14 +2,15 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './styles.css';
-import { SITE_LOCKED, NotFound } from '@tomine/gate';
+import { SITE_LOCKED } from '@tomine/data/siteLock';
+import NotFound from './NotFound';
 
 /* --- 404 gate: ON -------------------------------------------------------
- * The flag lives in the main site at src/gate.tsx and is read here through
- * the @tomine alias, so one edit covers both sites. Set SITE_LOCKED to
- * false to hand everything back.
+ * The flag is shared with the main site (src/data/siteLock.ts, read here
+ * through the @tomine alias), so one edit covers both. The 404 component
+ * is local — see NotFound.tsx for why.
  *
- *   <StrictMode><App /></StrictMode>
+ * To hand the site back: set SITE_LOCKED to false in src/data/siteLock.ts.
  * ---------------------------------------------------------------------- */
 
 createRoot(document.getElementById('root')!).render(
