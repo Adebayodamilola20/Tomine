@@ -18,6 +18,7 @@ import path1 from '../assets/path1.jpg';
 import path4 from '../assets/path4.jpg';
 import path5 from '../assets/path5.jpg';
 import path6 from '../assets/path6.jpg';
+import poundedYamEfoRiroAssorted from '../assets/pounded-yam-efo-riro-assorted.jpg';
 
 const WHATSAPP_ORDER = 'https://wa.me/2349036152411';
 
@@ -46,6 +47,9 @@ const BUILDING_HOLD_MS = 5000;
  * The strip pulls its photos and captions straight out of the menu, so a dish
  * can never end up under the wrong name here — correct it once in menu.ts and
  * this follows. Anything without a photo yet is simply skipped.
+ *
+ * STRIP_ONLY below carries the handful of plates shown here that are not
+ * priced menu lines, so they have no entry in menu.ts to be looked up.
  */
 const SHOWCASE_NAMES = [
   'Jollof Rice',
@@ -66,10 +70,22 @@ const SHOWCASE_NAMES = [
 
 type Showcase = { name: string; image: string };
 
-const SHOWCASE: Showcase[] = SHOWCASE_NAMES.flatMap((name) => {
-  const item = MENU.flatMap((s) => s.items).find((i) => i.name === name);
-  return item?.image ? [{ name: item.name, image: item.image }] : [];
-});
+/* Photographed for the strip, not sold as its own priced line — the photo and
+   caption are given here because there is no menu.ts row to read them from. */
+const STRIP_ONLY: Showcase[] = [
+  {
+    name: 'Pounded Yam with Efo-Riro & Assorted Meat',
+    image: poundedYamEfoRiroAssorted,
+  },
+];
+
+const SHOWCASE: Showcase[] = [
+  ...SHOWCASE_NAMES.flatMap((name) => {
+    const item = MENU.flatMap((s) => s.items).find((i) => i.name === name);
+    return item?.image ? [{ name: item.name, image: item.image }] : [];
+  }),
+  ...STRIP_ONLY,
+];
 
 const GALLERY_SHOTS = [
   { image: img1, label: 'The dining room' },
