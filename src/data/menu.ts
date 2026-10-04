@@ -107,6 +107,26 @@ export const MENU: MenuSection[] = [
     ],
   },
   {
+    /**
+     * Ready-packed combos the kitchen sells as one item. Each pack is jollof
+     * rice, plantain, a drink and the protein in its name; the price the
+     * manager quoted is the whole pack, not the parts.
+     *
+     * No photos yet — the ones sent came through as Google Photos albums,
+     * which cannot be pulled into the build. Listed by name until the
+     * kitchen sends the actual files.
+     */
+    category: 'Tomine Packs',
+    items: [
+      { name: 'Chicken Pack', price: '₦4,500', note: 'Jollof, plantain & drink' },
+      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
+      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
+      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
+      { name: '2 Beefs Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
+      { name: 'Beef & Egg Pack', price: '₦3,300', note: 'Jollof, plantain & drink' },
+    ],
+  },
+  {
     category: 'Drinks',
     items: [
       { name: 'Fanta', price: '₦500', note: '50CL', image: fanta },
