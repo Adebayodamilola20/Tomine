@@ -10,4 +10,4 @@
  * JSX in it travels over that boundary safely — exactly like data/menu.ts
  * already does. The 404 component itself is kept local to each site.
  */
-export const SITE_LOCKED = true;
+export const SITE_LOCKED = false;
