@@ -45,6 +45,15 @@ import maltaGuinnessCan from '../assets/menu/malta-guinness-can.jpg';
 import parfait from '../assets/menu/parfait.jpg';
 import vitaMilk from '../assets/menu/vita-milk.jpg';
 
+import packChicken from '../assets/menu/pack-chicken.jpg';
+import packBeefFish from '../assets/menu/pack-beef-fish.jpg';
+import packBeefPomo from '../assets/menu/pack-beef-pomo.jpg';
+import packPomoFish from '../assets/menu/pack-pomo-fish.jpg';
+import packTwoBeefs from '../assets/menu/pack-two-beefs.jpg';
+import packBeefEgg from '../assets/menu/pack-beef-egg.jpg';
+import packFishEgg from '../assets/menu/pack-fish-egg.jpg';
+import packPomoEgg from '../assets/menu/pack-pomo-egg.jpg';
+
 export interface MenuItem {
   name: string;
   price: string;
@@ -109,21 +118,21 @@ export const MENU: MenuSection[] = [
   {
     /**
      * Ready-packed combos the kitchen sells as one item. Each pack is jollof
-     * rice, plantain, a drink and the protein in its name; the price the
-     * manager quoted is the whole pack, not the parts.
-     *
-     * No photos yet — the ones sent came through as Google Photos albums,
-     * which cannot be pulled into the build. Listed by name until the
-     * kitchen sends the actual files.
+     * rice, plantain, a drink and the protein in its name; the price is the
+     * whole pack, summed from the manager's price lists. The egg packs come
+     * to 3,300 on those lists and are rounded to a flat 3,500 at the
+     * manager's instruction.
      */
     category: 'Tomine Packs',
     items: [
-      { name: 'Chicken Pack', price: '₦4,500', note: 'Jollof, plantain & drink' },
-      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: '2 Beefs Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: 'Beef & Egg Pack', price: '₦3,300', note: 'Jollof, plantain & drink' },
+      { name: 'Chicken Pack', price: '₦4,500', note: 'Jollof, plantain & drink', image: packChicken },
+      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packBeefFish },
+      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packBeefPomo },
+      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packPomoFish },
+      { name: '2 Beefs Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packTwoBeefs },
+      { name: 'Beef & Egg Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packBeefEgg },
+      { name: 'Fish & Egg Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packFishEgg },
+      { name: 'Pomo & Egg Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packPomoEgg },
     ],
   },
   {
