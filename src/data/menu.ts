@@ -45,6 +45,36 @@ import maltaGuinnessCan from '../assets/menu/malta-guinness-can.jpg';
 import parfait from '../assets/menu/parfait.jpg';
 import vitaMilk from '../assets/menu/vita-milk.jpg';
 
+import packChickenJollof from '../assets/menu/pack-chicken-jollof.jpg';
+import packBeefFishJollof from '../assets/menu/pack-beef-fish-jollof.jpg';
+import packBeefPomoJollof from '../assets/menu/pack-beef-pomo-jollof.jpg';
+import packTwoBeefsJollof from '../assets/menu/pack-two-beefs-jollof.jpg';
+import packBeefEggJollof from '../assets/menu/pack-beef-egg-jollof.jpg';
+import packFishEggJollof from '../assets/menu/pack-fish-egg-jollof.jpg';
+import packPomoEggJollof from '../assets/menu/pack-pomo-egg-jollof.jpg';
+import packChickenFriedRice from '../assets/menu/pack-chicken-fried-rice.jpg';
+import packBeefFishFriedRice from '../assets/menu/pack-beef-fish-fried-rice.jpg';
+import packBeefPomoFriedRice from '../assets/menu/pack-beef-pomo-fried-rice.jpg';
+import packPomoFishFriedRice from '../assets/menu/pack-pomo-fish-fried-rice.jpg';
+import packTwoBeefsFriedRice from '../assets/menu/pack-two-beefs-fried-rice.jpg';
+import packBeefEggFriedRice from '../assets/menu/pack-beef-egg-fried-rice.jpg';
+import packFishEggFriedRice from '../assets/menu/pack-fish-egg-fried-rice.jpg';
+import packPomoEggFriedRice from '../assets/menu/pack-pomo-egg-fried-rice.jpg';
+import packChickenSpaghetti from '../assets/menu/pack-chicken-spaghetti.jpg';
+import packBeefFishSpaghetti from '../assets/menu/pack-beef-fish-spaghetti.jpg';
+import packBeefPomoSpaghetti from '../assets/menu/pack-beef-pomo-spaghetti.jpg';
+import packPomoFishSpaghetti from '../assets/menu/pack-pomo-fish-spaghetti.jpg';
+import packTwoBeefsSpaghetti from '../assets/menu/pack-two-beefs-spaghetti.jpg';
+import packFishEggSpaghetti from '../assets/menu/pack-fish-egg-spaghetti.jpg';
+import packPomoEggSpaghetti from '../assets/menu/pack-pomo-egg-spaghetti.jpg';
+import packChickenMixed from '../assets/menu/pack-chicken-mixed.jpg';
+import packBeefFishMixed from '../assets/menu/pack-beef-fish-mixed.jpg';
+import packBeefPomoMixed from '../assets/menu/pack-beef-pomo-mixed.jpg';
+import packPomoFishMixed from '../assets/menu/pack-pomo-fish-mixed.jpg';
+import packTwoBeefsMixed from '../assets/menu/pack-two-beefs-mixed.jpg';
+import packBeefEggMixed from '../assets/menu/pack-beef-egg-mixed.jpg';
+import packFishEggMixed from '../assets/menu/pack-fish-egg-mixed.jpg';
+
 export interface MenuItem {
   name: string;
   price: string;
@@ -106,24 +136,61 @@ export const MENU: MenuSection[] = [
       { name: 'Boiled Egg', price: '₦500', image: boiledEgg },
     ],
   },
+  /*
+   * Ready-packed combos the kitchen sells as one item: a base, plantain, a
+   * drink (Coke, Fanta or Capri-Sun) and the protein in its name. Prices are
+   * summed from the manager's price lists; the egg packs come to 3,300 there
+   * and are rounded to a flat 3,500 at the manager's instruction. The lists
+   * only price jollof, so the other bases carry the jollof price until the
+   * manager says otherwise. Each base lists only the packs the kitchen shot.
+   */
   {
-    /**
-     * Ready-packed combos the kitchen sells as one item. Each pack is jollof
-     * rice, plantain, a drink and the protein in its name; the price the
-     * manager quoted is the whole pack, not the parts.
-     *
-     * No photos yet — the ones sent came through as Google Photos albums,
-     * which cannot be pulled into the build. Listed by name until the
-     * kitchen sends the actual files.
-     */
-    category: 'Tomine Packs',
+    category: 'Jollof Packs',
     items: [
-      { name: 'Chicken Pack', price: '₦4,500', note: 'Jollof, plantain & drink' },
-      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: '2 Beefs Pack', price: '₦3,500', note: 'Jollof, plantain & drink' },
-      { name: 'Beef & Egg Pack', price: '₦3,300', note: 'Jollof, plantain & drink' },
+      { name: 'Chicken Pack', price: '₦4,500', note: 'Jollof, plantain & drink', image: packChickenJollof },
+      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packBeefFishJollof },
+      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packBeefPomoJollof },
+      { name: '2 Beefs Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packTwoBeefsJollof },
+      { name: 'Beef & Egg Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packBeefEggJollof },
+      { name: 'Fish & Egg Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packFishEggJollof },
+      { name: 'Pomo & Egg Pack', price: '₦3,500', note: 'Jollof, plantain & drink', image: packPomoEggJollof },
+    ],
+  },
+  {
+    category: 'Fried Rice Packs',
+    items: [
+      { name: 'Chicken Pack', price: '₦4,500', note: 'Fried rice, plantain & drink', image: packChickenFriedRice },
+      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packBeefFishFriedRice },
+      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packBeefPomoFriedRice },
+      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packPomoFishFriedRice },
+      { name: '2 Beefs Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packTwoBeefsFriedRice },
+      { name: 'Beef & Egg Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packBeefEggFriedRice },
+      { name: 'Fish & Egg Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packFishEggFriedRice },
+      { name: 'Pomo & Egg Pack', price: '₦3,500', note: 'Fried rice, plantain & drink', image: packPomoEggFriedRice },
+    ],
+  },
+  {
+    category: 'Spaghetti Packs',
+    items: [
+      { name: 'Chicken Pack', price: '₦4,500', note: 'Spaghetti, plantain & drink', image: packChickenSpaghetti },
+      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Spaghetti, plantain & drink', image: packBeefFishSpaghetti },
+      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Spaghetti, plantain & drink', image: packBeefPomoSpaghetti },
+      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Spaghetti, plantain & drink', image: packPomoFishSpaghetti },
+      { name: '2 Beefs Pack', price: '₦3,500', note: 'Spaghetti, plantain & drink', image: packTwoBeefsSpaghetti },
+      { name: 'Fish & Egg Pack', price: '₦3,500', note: 'Spaghetti, plantain & drink', image: packFishEggSpaghetti },
+      { name: 'Pomo & Egg Pack', price: '₦3,500', note: 'Spaghetti, plantain & drink', image: packPomoEggSpaghetti },
+    ],
+  },
+  {
+    category: 'Jollof & Fried Rice Packs',
+    items: [
+      { name: 'Chicken Pack', price: '₦4,500', note: 'Jollof & fried rice, plantain & drink', image: packChickenMixed },
+      { name: 'Beef & Fish Pack', price: '₦3,500', note: 'Jollof & fried rice, plantain & drink', image: packBeefFishMixed },
+      { name: 'Beef & Pomo Pack', price: '₦3,500', note: 'Jollof & fried rice, plantain & drink', image: packBeefPomoMixed },
+      { name: 'Pomo & Fish Pack', price: '₦3,500', note: 'Jollof & fried rice, plantain & drink', image: packPomoFishMixed },
+      { name: '2 Beefs Pack', price: '₦3,500', note: 'Jollof & fried rice, plantain & drink', image: packTwoBeefsMixed },
+      { name: 'Beef & Egg Pack', price: '₦3,500', note: 'Jollof & fried rice, plantain & drink', image: packBeefEggMixed },
+      { name: 'Fish & Egg Pack', price: '₦3,500', note: 'Jollof & fried rice, plantain & drink', image: packFishEggMixed },
     ],
   },
   {
