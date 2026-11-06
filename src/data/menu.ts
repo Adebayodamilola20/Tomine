@@ -28,6 +28,8 @@ import turkey from '../assets/menu/turkey.jpg';
 import cowLeg from '../assets/menu/cow-leg.jpg';
 import assortedMeat from '../assets/menu/assorted-meat.jpg';
 import boiledEgg from '../assets/menu/boiled-egg.jpg';
+import chickenChips from '../assets/menu/chicken-chips.jpg';
+import chickenChipsColeslaw from '../assets/menu/chicken-chips-coleslaw.jpg';
 
 import fanta from '../assets/menu/fanta.jpg';
 import cocaCola from '../assets/menu/coca-cola.jpg';
@@ -130,6 +132,8 @@ export const MENU: MenuSection[] = [
       { name: 'Croaker Fish', price: '₦3,000', image: croakerFish },
       /* Photo pulled at the client's request — listed by name until a new one arrives. */
       { name: 'Roasted Chicken', price: '₦2,500' },
+      { name: 'Chicken & Chips', price: '₦7,000', image: chickenChips },
+      { name: 'Chicken, Chips & Coleslaw', price: '₦8,000', image: chickenChipsColeslaw },
       { name: 'Turkey', price: '₦4,000', image: turkey },
       { name: 'Cow Leg', price: '₦2,500', image: cowLeg },
       { name: 'Assorted Meat', price: '₦1,000', image: assortedMeat },

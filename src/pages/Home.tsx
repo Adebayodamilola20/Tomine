@@ -6,8 +6,10 @@ import Button from '../components/ui/Button';
 import { MENU } from '../data/menu';
 import './Home.css';
 
-import building1 from '../assets/building-1.jpg';
-import building2 from '../assets/building-2.jpg';
+import branchNight from '../assets/branch-night.jpg';
+import branchFront from '../assets/branch-front.jpg';
+import branchWide from '../assets/branch-wide.jpg';
+import branchSide from '../assets/branch-side.jpg';
 
 import img1 from '../assets/cto1.jpg';
 import img2 from '../assets/cto2.jpg';
@@ -35,9 +37,15 @@ const HERO_SLIDES = [
 
 const SLIDE_HOLD_MS = 6000;
 
+/*
+ * Most of these are portrait shots in a full-bleed landscape frame, so each
+ * carries its own focal point to keep the sign in view when the edges crop.
+ */
 const BUILDING_SHOTS = [
-  { image: building1, alt: 'The Tomine Bakery & Restaurant shopfront' },
-  { image: building2, alt: 'Tomine Bakery & Restaurant seen from the forecourt' },
+  { image: branchNight, alt: 'Tomine Bakery & Restaurant lit up at night', focus: 'center 45%' },
+  { image: branchWide, alt: 'The full Tomine frontage and forecourt', focus: 'center 55%' },
+  { image: branchFront, alt: 'The Tomine Bakery & Restaurant shopfront', focus: 'center 40%' },
+  { image: branchSide, alt: 'Tomine seen across the forecourt', focus: 'center 45%' },
 ];
 
 const BUILDING_HOLD_MS = 5000;
@@ -216,10 +224,15 @@ const Home = () => {
             src={BUILDING_SHOTS[buildingIndex].image}
             alt={BUILDING_SHOTS[buildingIndex].alt}
             className="branch-photo"
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
+            style={{ objectPosition: BUILDING_SHOTS[buildingIndex].focus }}
+            initial={{ x: '-100%', scale: 1.08 }}
+            animate={{ x: 0, scale: 1 }}
             exit={{ x: '100%' }}
-            transition={{ duration: 1.1, ease: [0.65, 0, 0.35, 1] }}
+            transition={{
+              x: { duration: 1.1, ease: [0.65, 0, 0.35, 1] },
+              // A slow settle while the shot holds, so it never sits dead still.
+              scale: { duration: BUILDING_HOLD_MS / 1000 + 1.1, ease: 'easeOut' },
+            }}
           />
         </AnimatePresence>
 
