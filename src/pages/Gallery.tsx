@@ -15,6 +15,17 @@ import room1 from '../assets/cto1.jpg';
 import room2 from '../assets/cto2.jpg';
 import room3 from '../assets/cto3.jpg';
 import room4 from '../assets/cto4.jpg';
+import gallery1 from '../assets/gallery-1.jpg';
+import gallery2 from '../assets/gallery-2.jpg';
+import gallery3 from '../assets/gallery-3.jpg';
+import gallery4 from '../assets/gallery-4.jpg';
+import gallery5 from '../assets/gallery-5.jpg';
+import gallery6 from '../assets/gallery-6.jpg';
+import gallery7 from '../assets/gallery-7.jpg';
+import gallery8 from '../assets/gallery-8.jpg';
+import gallery9 from '../assets/gallery-9.jpg';
+import gallery10 from '../assets/gallery-10.jpg';
+import gallery11 from '../assets/gallery-11.jpg';
 
 /**
  * Tomine's own photographs. This page used to be eight Unsplash hotlinks with
@@ -34,6 +45,17 @@ const GALLERY_IMAGES = [
   { src: room2, alt: 'Seating at Tomine' },
   { src: room3, alt: 'The counter' },
   { src: room4, alt: 'Plated dishes' },
+  { src: gallery1, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery2, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery3, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery4, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery5, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery6, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery7, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery8, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery9, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery10, alt: 'Tomine Bakery & Restaurant' },
+  { src: gallery11, alt: 'Tomine Bakery & Restaurant' },
 ];
 
 const Gallery = () => {
